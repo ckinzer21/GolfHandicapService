@@ -1,0 +1,1 @@
+Using a mix of Vertical Slice and Clean Code Architecture.  VSA has too many files, and felt like I could reuse some of them instead of having the bare mininum in them.
