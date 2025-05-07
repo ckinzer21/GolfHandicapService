@@ -24,7 +24,7 @@ namespace GolfHandicap.Features.Matches.Post.GolfMatches.Preview
             var matchSchedule = _dataContext.MatchSchedules.Where(ms => ms.Year == DateTime.Today.Year);
             var golfers = await _dataContext.Golfers.ToListAsync();
             if (!matchSchedule.Any()) return new List<GolfMatchResponse>();
-            //_validator.ScheduleValidator(matchSchedule.FirstOrDefault().Year);
+            
             
 
             return new List<GolfMatchResponse>();
