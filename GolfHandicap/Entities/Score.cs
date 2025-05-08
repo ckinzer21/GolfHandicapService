@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace GolfHandicap.Entities
+﻿namespace GolfHandicap.Entities
 {
     public class Score
     {

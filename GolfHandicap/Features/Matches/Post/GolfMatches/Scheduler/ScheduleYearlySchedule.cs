@@ -1,6 +1,6 @@
 ﻿using GolfHandicap.Entities;
 
-namespace GolfHandicap.Features.Matches.Post.GolfMatches
+namespace GolfHandicap.Features.Matches.Post.GolfMatches.Scheduler
 {
     public class ScheduleYearlySchedule : IScheduleYearlySchedule
     {
@@ -10,7 +10,7 @@ namespace GolfHandicap.Features.Matches.Post.GolfMatches
             var result = new List<GolfMatchDto>();
 
             var groupedByWeek = matchSchedules
-                .GroupBy(ms => new { ms.Week, ms.Year })
+                .GroupBy(ms => new { ms.Week, ms.Date.Year })
                 .OrderBy(g => g.Key.Year)
                 .ThenBy(g => g.Key.Week);
 

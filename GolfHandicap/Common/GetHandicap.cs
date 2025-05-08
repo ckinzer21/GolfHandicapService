@@ -36,7 +36,7 @@ namespace GolfHandicap.Common
             await _context.Scores
                 .Where(s => s.GolferId == golferId && s.MatchSchedule != null)
                 .Include(s => s.MatchSchedule) // ensures matchschedule is loaded
-                .OrderByDescending(s => s.MatchSchedule.Year)
+                .OrderByDescending(s => s.MatchSchedule.Date.Year)
                 .ThenByDescending(s => s.MatchSchedule.Week)
                 .Take(6)
                 .ToListAsync();

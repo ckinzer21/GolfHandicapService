@@ -1,4 +1,5 @@
 ﻿using GolfHandicap.Features.Matches.Post.Schedule;
+using GolfHandicap.Features.Matches.Post.Schedules;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GolfHandicap.Features.Controller
@@ -14,11 +15,18 @@ namespace GolfHandicap.Features.Controller
             _postHandler = postHandler;
         }
 
+        //probably going to remove this
         [HttpPost("yearly", Name = "CreateYearlyMatchSchedule")]
         public async Task<IActionResult> CreateYearlyMatchSchedule([FromBody] IEnumerable<PostMatchScheduleRequest> requests)
         {
             await _postHandler.CreateYearlySchedule(requests);
             return Ok();// not good, need to handle errors
         }
+
+        //[HttpPost("schedule")]
+        //public async Task<IActionResult> CreateSchedule([FromBody] ScheduleRequest request)
+        //{
+
+        //}
     }
 }

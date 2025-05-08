@@ -3,11 +3,6 @@ using GolfHandicap.Entities;
 
 namespace GolfHandicap.Features.Courses
 {
-    public interface ICreateCourseHandler
-    {
-        Task Create(IEnumerable<CreateCourseRequest> requests);
-    }
-
     public class CreateCourseHandler : ICreateCourseHandler
     {
         private readonly DataContext _context;

@@ -12,6 +12,7 @@ namespace GolfHandicap.Data
         public DbSet<Weight> Weight { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Tee> Tees { get; set; }
+        public DbSet<Major> Majors { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -42,17 +43,23 @@ namespace GolfHandicap.Data
                 .WithOne(s => s.Golfer)
                 .HasForeignKey(s => s.GolferId);
 
-            modelBuilder.Entity<Score>()
-                .HasMany(s => s.HolesScore)
-                .WithOne(h => h.Score);
-
             modelBuilder.Entity<Golfer>()
                 .HasOne(g => g.FlightLookup);
 
             modelBuilder.Entity<Score>()
-            .HasOne(s => s.Tee)
-            .WithMany()
-            .HasForeignKey(s => s.TeeId);
+                .HasMany(s => s.HolesScore)
+                .WithOne(h => h.Score);
+
+            modelBuilder.Entity<Score>()
+                .HasOne(s => s.Tee)
+                .WithMany()
+                .HasForeignKey(s => s.TeeId);
+
+            modelBuilder.Entity<MatchSchedule>()
+                .HasOne(ms => ms.Major)
+                .WithMany(m => m.MatchSchedules)
+                .HasForeignKey(ms => ms.MajorId)
+                .IsRequired(false); // allow null for regular weeks
 
             modelBuilder.Entity<Tee>()
                 .HasKey(t => t.TeeId);
