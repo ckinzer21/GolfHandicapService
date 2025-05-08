@@ -34,15 +34,15 @@ namespace GolfHandicap.Features.Controllers
         [HttpPost(Name = "CreateScore")]
         public async Task<IActionResult> CreateScore(PostScoreRequest request)
         {
-            var score = await _postScoreHandler.CreateScore(request);
-            return score != null ? Ok(score) : NotFound();
+            var handicap = await _postScoreHandler.CreateScore(request);
+            return Ok(handicap);
         }
 
         [HttpPost(Name = "UpdateScore")]
         public async Task<IActionResult> UpdateScore(PostScoreRequest request)
         {
-            await _postScoreHandler.UpdateScore(request);
-            return Ok();
+            var handicap = await _postScoreHandler.UpdateScore(request);
+            return Ok(handicap);
         }
     }
 }

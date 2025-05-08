@@ -103,12 +103,12 @@ namespace GolfHandicap.Test.xUnit
         {
             return new List<Score>
             {
-                new Score { ScoreId = 1, GolferId = 1, MatchId = 1, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Baldwin()},
-                new Score { ScoreId = 2, GolferId = 1, MatchId = 2, GrossStrokes = 42, AdjustedGrossStrokes = 42, Course = Baldwin()},
-                new Score { ScoreId = 3, GolferId = 1, MatchId = 3, GrossStrokes = 48, AdjustedGrossStrokes = 41, Course = Baldwin()},
-                new Score { ScoreId = 4, GolferId = 1, MatchId = 4, GrossStrokes = 40, AdjustedGrossStrokes = 36, Course = Baldwin()},
-                new Score { ScoreId = 5, GolferId = 1, MatchId = 5, GrossStrokes = 50, AdjustedGrossStrokes = 44, Course = Baldwin()},
-                new Score { ScoreId = 6, GolferId = 1, MatchId = 6, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Baldwin()},
+                new Score { ScoreId = 1, GolferId = 1, MatchScheduleId = 1, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Baldwin()},
+                new Score { ScoreId = 2, GolferId = 1, MatchScheduleId = 2, GrossStrokes = 42, AdjustedGrossStrokes = 42, Course = Baldwin()},
+                new Score { ScoreId = 3, GolferId = 1, MatchScheduleId = 3, GrossStrokes = 48, AdjustedGrossStrokes = 41, Course = Baldwin()},
+                new Score { ScoreId = 4, GolferId = 1, MatchScheduleId = 4, GrossStrokes = 40, AdjustedGrossStrokes = 36, Course = Baldwin()},
+                new Score { ScoreId = 5, GolferId = 1, MatchScheduleId = 5, GrossStrokes = 50, AdjustedGrossStrokes = 44, Course = Baldwin()},
+                new Score { ScoreId = 6, GolferId = 1, MatchScheduleId = 6, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Baldwin()},
             };
         }
 
@@ -116,12 +116,12 @@ namespace GolfHandicap.Test.xUnit
         {
             return new List<Score>
             {
-                new Score { ScoreId = 1, GolferId = 1, MatchId = 1, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Furnance()},
-                new Score { ScoreId = 2, GolferId = 1, MatchId = 2, GrossStrokes = 42, AdjustedGrossStrokes = 42, Course = Furnance()},
-                new Score { ScoreId = 3, GolferId = 1, MatchId = 3, GrossStrokes = 48, AdjustedGrossStrokes = 41, Course = Furnance()},
-                new Score { ScoreId = 4, GolferId = 1, MatchId = 4, GrossStrokes = 40, AdjustedGrossStrokes = 36, Course = Furnance()},
-                new Score { ScoreId = 5, GolferId = 1, MatchId = 5, GrossStrokes = 50, AdjustedGrossStrokes = 44, Course = Furnance()},
-                new Score { ScoreId = 6, GolferId = 1, MatchId = 6, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Furnance()},
+                new Score { ScoreId = 1, GolferId = 1, MatchScheduleId = 1, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Furnance()},
+                new Score { ScoreId = 2, GolferId = 1, MatchScheduleId = 2, GrossStrokes = 42, AdjustedGrossStrokes = 42, Course = Furnance()},
+                new Score { ScoreId = 3, GolferId = 1, MatchScheduleId = 3, GrossStrokes = 48, AdjustedGrossStrokes = 41, Course = Furnance()},
+                new Score { ScoreId = 4, GolferId = 1, MatchScheduleId = 4, GrossStrokes = 40, AdjustedGrossStrokes = 36, Course = Furnance()},
+                new Score { ScoreId = 5, GolferId = 1, MatchScheduleId = 5, GrossStrokes = 50, AdjustedGrossStrokes = 44, Course = Furnance()},
+                new Score { ScoreId = 6, GolferId = 1, MatchScheduleId = 6, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Furnance()},
             };
         }
 
@@ -129,12 +129,12 @@ namespace GolfHandicap.Test.xUnit
         {
             return new List<Score>
             {
-                new Score { ScoreId = 1, GolferId = 1, MatchId = 1, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Chippewa()},
-                new Score { ScoreId = 2, GolferId = 1, MatchId = 2, GrossStrokes = 42, AdjustedGrossStrokes = 42, Course = Chippewa()},
-                new Score { ScoreId = 3, GolferId = 1, MatchId = 3, GrossStrokes = 48, AdjustedGrossStrokes = 41, Course = Chippewa()},
-                new Score { ScoreId = 4, GolferId = 1, MatchId = 4, GrossStrokes = 40, AdjustedGrossStrokes = 36, Course = Chippewa()},
-                new Score { ScoreId = 5, GolferId = 1, MatchId = 5, GrossStrokes = 50, AdjustedGrossStrokes = 44, Course = Chippewa()},
-                new Score { ScoreId = 6, GolferId = 1, MatchId = 6, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Chippewa()},
+                new Score { ScoreId = 1, GolferId = 1, MatchScheduleId = 1, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Chippewa()},
+                new Score { ScoreId = 2, GolferId = 1, MatchScheduleId = 2, GrossStrokes = 42, AdjustedGrossStrokes = 42, Course = Chippewa()},
+                new Score { ScoreId = 3, GolferId = 1, MatchScheduleId = 3, GrossStrokes = 48, AdjustedGrossStrokes = 41, Course = Chippewa()},
+                new Score { ScoreId = 4, GolferId = 1, MatchScheduleId = 4, GrossStrokes = 40, AdjustedGrossStrokes = 36, Course = Chippewa()},
+                new Score { ScoreId = 5, GolferId = 1, MatchScheduleId = 5, GrossStrokes = 50, AdjustedGrossStrokes = 44, Course = Chippewa()},
+                new Score { ScoreId = 6, GolferId = 1, MatchScheduleId = 6, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Chippewa()},
             };
         }
 
@@ -142,12 +142,12 @@ namespace GolfHandicap.Test.xUnit
         {
             return new List<Score>
             {
-                new Score { ScoreId = 1, GolferId = 1, MatchId = 1, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Baldwin()},
-                new Score { ScoreId = 2, GolferId = 1, MatchId = 2, GrossStrokes = 42, AdjustedGrossStrokes = 42, Course = Furnance()},
-                new Score { ScoreId = 3, GolferId = 1, MatchId = 3, GrossStrokes = 48, AdjustedGrossStrokes = 41, Course = Chippewa()},
-                new Score { ScoreId = 4, GolferId = 1, MatchId = 4, GrossStrokes = 40, AdjustedGrossStrokes = 36, Course = Baldwin()},
-                new Score { ScoreId = 5, GolferId = 1, MatchId = 5, GrossStrokes = 50, AdjustedGrossStrokes = 44, Course = Furnance()},
-                new Score { ScoreId = 6, GolferId = 1, MatchId = 6, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Chippewa()},
+                new Score { ScoreId = 1, GolferId = 1, MatchScheduleId = 1, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Baldwin()},
+                new Score { ScoreId = 2, GolferId = 1, MatchScheduleId = 2, GrossStrokes = 42, AdjustedGrossStrokes = 42, Course = Furnance()},
+                new Score { ScoreId = 3, GolferId = 1, MatchScheduleId = 3, GrossStrokes = 48, AdjustedGrossStrokes = 41, Course = Chippewa()},
+                new Score { ScoreId = 4, GolferId = 1, MatchScheduleId = 4, GrossStrokes = 40, AdjustedGrossStrokes = 36, Course = Baldwin()},
+                new Score { ScoreId = 5, GolferId = 1, MatchScheduleId = 5, GrossStrokes = 50, AdjustedGrossStrokes = 44, Course = Furnance()},
+                new Score { ScoreId = 6, GolferId = 1, MatchScheduleId = 6, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Chippewa()},
             };
         }
     }

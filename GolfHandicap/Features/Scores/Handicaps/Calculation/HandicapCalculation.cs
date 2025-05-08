@@ -4,7 +4,8 @@ using Microsoft.Extensions.Options;
 
 namespace GolfHandicap.Features.Scores.Handicaps.Calculation
 {
-    public class HandicapCalculation
+
+    public class HandicapCalculation : IHandicapCalculation
     {
         private readonly SlopeSettings _slopeSettings;
 

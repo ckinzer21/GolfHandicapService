@@ -9,6 +9,7 @@ namespace GolfHandicap.Data
         public DbSet<MatchSchedule> MatchSchedules { get; set; }
         public DbSet<GolfMatch> GolfMatches { get; set; }
         public DbSet<Score> Scores { get; set; }
+        public DbSet<Weight> Weight { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -16,6 +17,7 @@ namespace GolfHandicap.Data
             // Fluent config, if any
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Golfer>().HasQueryFilter(x => !x.IsDeleted);
+            modelBuilder.Entity<Weight>().HasQueryFilter(x => !x.IsDeleted);
             modelBuilder.Entity<GolfMatch>()
                 .HasKey(gm => new {gm.GolferId, gm.MatchScheduleId});
 

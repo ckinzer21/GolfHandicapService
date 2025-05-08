@@ -1,8 +1,10 @@
-﻿namespace GolfHandicap.Features.Scores.Post
+﻿using GolfHandicap.Entities;
+
+namespace GolfHandicap.Features.Scores.Post
 {
     public interface IPostScoreHandler
     {
-        Task<PostScoreResposne> CreateScore(PostScoreRequest request);
-        Task UpdateScore(PostScoreRequest request);
+        Task<(double, int)> CreateScore(PostScoreRequest request);
+        Task<(double, int)> UpdateScore(PostScoreRequest request);
     }
 }

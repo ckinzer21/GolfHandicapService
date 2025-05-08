@@ -6,6 +6,6 @@
         public int Strokes { get; init; }
         public int AdjustedStrokes { get; init; }
         public int GolferId { get; init; }
-        public int MatchId { get; init; }
+        public int MatchScheduleId { get; init; }
     }
 }
