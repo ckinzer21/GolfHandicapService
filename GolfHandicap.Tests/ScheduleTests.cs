@@ -1,5 +1,5 @@
 using GolfHandicap.Entities;
-using GolfHandicap.Features.Matches.Post.Schedules;
+using GolfHandicap.Features.Matches.Post.GolfMatches;
 
 namespace GolfHandicap.Tests
 {
