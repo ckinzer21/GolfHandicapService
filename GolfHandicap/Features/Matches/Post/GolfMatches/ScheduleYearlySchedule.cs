@@ -1,7 +1,6 @@
 ﻿using GolfHandicap.Entities;
-using GolfHandicap.Features.Matches.Post.GolfMatches;
 
-namespace GolfHandicap.Features.Matches.Post.Schedules
+namespace GolfHandicap.Features.Matches.Post.GolfMatches
 {
     public interface IScheduleYearlySchedule
     {

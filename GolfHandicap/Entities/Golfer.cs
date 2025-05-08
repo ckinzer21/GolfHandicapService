@@ -8,5 +8,7 @@
         public bool IsDeleted { get; set; }
         public ICollection<Handicap> CourseHandicaps { get; set; } = new List<Handicap>();
         public ICollection<GolfMatch> GolfMatches { get; set; } = new List<GolfMatch>();
+        public ICollection<Score> Scores { get; set; } = new List<Score>();
+        public FlightLookup FlightLookup { get; set; } = new FlightLookup();
     }
 }

@@ -4,6 +4,10 @@ using GolfHandicap.Features.Golfers.Get;
 using GolfHandicap.Features.Golfers.Get.GetById;
 using GolfHandicap.Features.Matches.Post.GolfMatches.Preview;
 using GolfHandicap.Features.Matches.Post.Schedule;
+using GolfHandicap.Features.Scores.Get;
+using GolfHandicap.Features.Scores.Post;
+using GolfHandicap.Features.Matches.Post.GolfMatches;
+using GolfHandicap.Common;
 
 namespace GolfHandicap
 {
@@ -25,6 +29,10 @@ namespace GolfHandicap
             builder.Services.AddTransient<IPreviewGolfMatchHandler, PreviewGolfMatchHandler>();
             builder.Services.AddTransient<IPreviewGolfMatchValidator, PreviewGolfMatchValidator>();
             builder.Services.AddTransient<IPostMatchScheduleHandler, PostMatchScheduleHandler>();
+            builder.Services.AddTransient<IGetScoreHandler, GetScoreHandler>();
+            builder.Services.AddTransient<IScheduleYearlySchedule, ScheduleYearlySchedule>();
+            builder.Services.AddTransient<IPostScoreHandler, PostScoreHandler>();
+            builder.Services.Configure<SlopeSettings>(builder.Configuration.GetSection("SlopeSettings"));
             builder.Services.AddAutoMapper(typeof(Program));
 
             var app = builder.Build();

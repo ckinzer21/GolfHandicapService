@@ -17,10 +17,10 @@ namespace GolfHandicap.Features.Controllers
             _postGolferHandler = postGolferHandler;
         }
 
-        [HttpGet("{id}", Name = "GetGolferById")]
-        public async Task<IActionResult> GetById(int id)
+        [HttpGet("{golferId}", Name = "GetGolferById")]
+        public async Task<IActionResult> GetGolferById(int golferId)
         {
-            var golfer = await _getGolferHandler.GetGolferById(id);
+            var golfer = await _getGolferHandler.GetGolferById(golferId);
             return golfer != null ? Ok(golfer) : NotFound();
         }
 

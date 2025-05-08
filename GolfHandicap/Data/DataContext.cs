@@ -8,6 +8,7 @@ namespace GolfHandicap.Data
         public DbSet<Golfer> Golfers { get; set; }
         public DbSet<MatchSchedule> MatchSchedules { get; set; }
         public DbSet<GolfMatch> GolfMatches { get; set; }
+        public DbSet<Score> Scores { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -38,6 +39,22 @@ namespace GolfHandicap.Data
                 .HasMany(g => g.CourseHandicaps)
                 .WithOne(h => h.Golfer)
                 .HasForeignKey(g => g.HandicapId);
+
+            modelBuilder.Entity<Golfer>()
+                .HasMany(g => g.Scores)
+                .WithOne(s => s.Golfer)
+                .HasForeignKey(g => g.ScoreId);
+
+            modelBuilder.Entity<Score>()
+                .HasMany(s => s.HolesScore)
+                .WithOne(h => h.Score);
+
+            modelBuilder.Entity<Score>()
+                .HasOne(s => s.Course)
+                .WithMany();
+
+            modelBuilder.Entity<Golfer>()
+                .HasOne(g => g.FlightLookup);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
