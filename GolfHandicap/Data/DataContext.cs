@@ -10,6 +10,7 @@ namespace GolfHandicap.Data
         public DbSet<GolfMatch> GolfMatches { get; set; }
         public DbSet<Score> Scores { get; set; }
         public DbSet<Weight> Weight { get; set; }
+        public DbSet<Course> Courses { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,12 +41,12 @@ namespace GolfHandicap.Data
             modelBuilder.Entity<Golfer>()
                 .HasMany(g => g.CourseHandicaps)
                 .WithOne(h => h.Golfer)
-                .HasForeignKey(g => g.HandicapId);
+                .HasForeignKey(h => h.HandicapId);
 
             modelBuilder.Entity<Golfer>()
                 .HasMany(g => g.Scores)
                 .WithOne(s => s.Golfer)
-                .HasForeignKey(g => g.ScoreId);
+                .HasForeignKey(s => s.ScoreId);
 
             modelBuilder.Entity<Score>()
                 .HasMany(s => s.HolesScore)
@@ -57,6 +58,24 @@ namespace GolfHandicap.Data
 
             modelBuilder.Entity<Golfer>()
                 .HasOne(g => g.FlightLookup);
+
+            modelBuilder.Entity<Course>()
+                .HasMany(c => c.Tees)
+                .WithOne(t => t.Course)
+                .HasForeignKey(t => t.CourseId);
+
+            modelBuilder.Entity<Score>()
+            .HasOne(s => s.TeeLookup)
+            .WithMany()
+            .HasForeignKey(s => s.TeeLookupId);
+
+            modelBuilder.Entity<TeeLookup>()
+                .HasKey(t => t.TeeLookupId);
+
+            modelBuilder.Entity<TeeLookup>()
+                .Property(t => t.Name)
+                .IsRequired()
+                .HasMaxLength(50);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

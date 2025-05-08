@@ -69,9 +69,7 @@ namespace GolfHandicap.Test.xUnit
             {
                 CourseId = 1,
                 Name = "Baldwin",
-                CourseRating = 37.4,
-                Slope = 127,
-                Tees = "Blue"
+                Tees = new[] { new TeeLookup { Name = "Blue", CourseRating = 37.4, Slope = 127 } } 
             };
         }
 
@@ -81,9 +79,7 @@ namespace GolfHandicap.Test.xUnit
             {
                 CourseId = 2,
                 Name = "Furnance",
-                CourseRating = 36.1,
-                Slope = 127,
-                Tees = "Blue"
+                Tees = new[] { new TeeLookup { Name = "Blue", CourseRating = 36.1, Slope = 127 } }
             };
         }
 
@@ -93,9 +89,7 @@ namespace GolfHandicap.Test.xUnit
             {
                 CourseId = 3,
                 Name = "Chippewa",
-                CourseRating = 35.6,
-                Slope = 123,
-                Tees = "Blue"
+                Tees = new[] { new TeeLookup { Name = "Blue", CourseRating = 35.6, Slope = 123 } }
             };
         }
 

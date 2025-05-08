@@ -23,7 +23,7 @@ namespace GolfHandicap.Features.Scores.Handicaps.Calculation
 
             foreach (var score in scores)
             {
-                var diff = Math.Round((score.AdjustedGrossStrokes - score.Course.CourseRating) * _slopeSettings.BaseSlope / score.Course.Slope, 2, MidpointRounding.AwayFromZero);
+                var diff = Math.Round((score.AdjustedGrossStrokes - score.TeeLookup.CourseRating) * _slopeSettings.BaseSlope / score.TeeLookup.Slope, 2, MidpointRounding.AwayFromZero);
                 diffs.Add(diff);
             }
 

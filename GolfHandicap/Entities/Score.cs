@@ -8,9 +8,11 @@
         public int MatchScheduleId { get; set; }
         public int GolferId { get; set; }
         public int CourseId { get; set; }
+        public int TeeLookupId { get; set; }
         public MatchSchedule MatchSchedule { get; set; } = new MatchSchedule();
         public Golfer Golfer { get; set; } = new Golfer();
         public Course Course { get; set; } = new Course();
         public ICollection<HoleScore> HolesScore { get; set; } = new List<HoleScore>();
+        public TeeLookup TeeLookup { get; set; } = new TeeLookup();
     }
 }

@@ -3,6 +3,6 @@
     public interface IGetGolferHandler
     {
         public Task<IEnumerable<GetGolferResponse?>> GetAllGolfers();
-        public Task<GetGolferResponse?> GetGolferById(int id);
+        public Task<GetGolferResponse?> GetGolferById(int golferId);
     }
 }

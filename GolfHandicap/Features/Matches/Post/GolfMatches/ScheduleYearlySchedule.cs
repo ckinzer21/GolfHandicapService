@@ -2,11 +2,6 @@
 
 namespace GolfHandicap.Features.Matches.Post.GolfMatches
 {
-    public interface IScheduleYearlySchedule
-    {
-        IEnumerable<GolfMatchDto> Schedule(IEnumerable<MatchSchedule> matchSchedules, List<int> golferIds);
-    }
-
     public class ScheduleYearlySchedule : IScheduleYearlySchedule
     {
         public IEnumerable<GolfMatchDto> Schedule(IEnumerable<MatchSchedule> matchSchedules, List<int> golferIds)
