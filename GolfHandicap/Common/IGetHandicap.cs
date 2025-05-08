@@ -2,6 +2,6 @@
 {
     public interface IGetHandicap
     {
-        Task<(double, int)> GetIndexAndRounded(int golferId);
+        Task<(double?, int?)> GetIndexAndRounded(int golferId);
     }
 }

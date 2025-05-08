@@ -11,6 +11,7 @@ namespace GolfHandicap.Data
         public DbSet<Score> Scores { get; set; }
         public DbSet<Weight> Weight { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Tee> Tees { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -36,43 +37,27 @@ namespace GolfHandicap.Data
                 .WithMany(m => m.GolfMatches)
                 .HasForeignKey(gm => gm.MatchScheduleId);
 
-            //I have many handicaps with one golfer
-            //1 golfer has many handicaps (historically)
-            modelBuilder.Entity<Golfer>()
-                .HasMany(g => g.CourseHandicaps)
-                .WithOne(h => h.Golfer)
-                .HasForeignKey(h => h.HandicapId);
-
             modelBuilder.Entity<Golfer>()
                 .HasMany(g => g.Scores)
                 .WithOne(s => s.Golfer)
-                .HasForeignKey(s => s.ScoreId);
+                .HasForeignKey(s => s.GolferId);
 
             modelBuilder.Entity<Score>()
                 .HasMany(s => s.HolesScore)
                 .WithOne(h => h.Score);
 
-            modelBuilder.Entity<Score>()
-                .HasOne(s => s.Course)
-                .WithMany();
-
             modelBuilder.Entity<Golfer>()
                 .HasOne(g => g.FlightLookup);
 
-            modelBuilder.Entity<Course>()
-                .HasMany(c => c.Tees)
-                .WithOne(t => t.Course)
-                .HasForeignKey(t => t.CourseId);
-
             modelBuilder.Entity<Score>()
-            .HasOne(s => s.TeeLookup)
+            .HasOne(s => s.Tee)
             .WithMany()
-            .HasForeignKey(s => s.TeeLookupId);
+            .HasForeignKey(s => s.TeeId);
 
-            modelBuilder.Entity<TeeLookup>()
-                .HasKey(t => t.TeeLookupId);
+            modelBuilder.Entity<Tee>()
+                .HasKey(t => t.TeeId);
 
-            modelBuilder.Entity<TeeLookup>()
+            modelBuilder.Entity<Tee>()
                 .Property(t => t.Name)
                 .IsRequired()
                 .HasMaxLength(50);

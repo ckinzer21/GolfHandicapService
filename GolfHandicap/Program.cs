@@ -1,5 +1,6 @@
 using GolfHandicap.Common;
 using GolfHandicap.Data;
+using GolfHandicap.Features.Courses;
 using GolfHandicap.Features.Golfers.Get;
 using GolfHandicap.Features.Golfers.Get.GetById;
 using GolfHandicap.Features.Golfers.Post;
@@ -24,18 +25,21 @@ namespace GolfHandicap
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<DataContext>();
-            builder.Logging.AddConsole();
-            //builder.Services.AddTransient<IPostGolferHandler, PostGolferHandler>();
-            //builder.Services.AddTransient<IGetGolferHandler, GetGolferHandler>();
-            //builder.Services.AddTransient<IPostMatchScheduleHandler, PostMatchScheduleHandler>();
-            //builder.Services.AddTransient<IGetScoreHandler, GetScoreHandler>();
-            //builder.Services.AddTransient<IScheduleYearlySchedule, ScheduleYearlySchedule>();
-            //builder.Services.AddTransient<IPostScoreHandler, PostScoreHandler>();
-            //builder.Services.AddTransient<ICustomRounding,  CustomRounding>();
-            //builder.Services.AddTransient<IGetHandicap,  GetHandicap>();
-            //builder.Services.AddTransient<IHandicapCalculation, HandicapCalculation>();
-            //builder.Services.Configure<SlopeSettings>(builder.Configuration.GetSection("SlopeSettings"));
-            //builder.Services.AddAutoMapper(typeof(Program));
+            //builder.Logging.AddConsole();
+            builder.Services.AddTransient<IPostGolferHandler, PostGolferHandler>();
+            builder.Services.AddTransient<IGetGolferHandler, GetGolferHandler>();
+            builder.Services.AddTransient<IPostMatchScheduleHandler, PostMatchScheduleHandler>();
+            builder.Services.AddTransient<IGetScoreHandler, GetScoreHandler>();
+            builder.Services.AddTransient<IScheduleYearlySchedule, ScheduleYearlySchedule>();
+            builder.Services.AddTransient<IPostScoreHandler, PostScoreHandler>();
+            builder.Services.AddTransient<ICustomRounding, CustomRounding>();
+            builder.Services.AddTransient<IGetHandicap, GetHandicap>();
+            builder.Services.AddTransient<IHandicapCalculation, HandicapCalculation>();
+            builder.Services.AddTransient<ICreateCourseHandler, CreateCourseHandler>();
+            builder.Services.Configure<SlopeSettings>(builder.Configuration.GetSection("SlopeSettings"));
+            builder.Services.AddAutoMapper(typeof(Program));
+            //builder.Logging.ClearProviders();
+
 
             var app = builder.Build();
 
@@ -44,7 +48,7 @@ namespace GolfHandicap
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
             }
 
             app.UseHttpsRedirection();

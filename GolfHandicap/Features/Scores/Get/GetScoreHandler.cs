@@ -16,13 +16,13 @@ namespace GolfHandicap.Features.Scores.Get
         {
             return await _context.Scores
                 .Where(x => x.ScoreId == id)
-                .Select(x => new GetScoreResponse(x.ScoreId, x.GrossStrokes, x.AdjustedGrossStrokes, x.MatchScheduleId, x.GolferId, x.CourseId))
+                .Select(x => new GetScoreResponse(x.ScoreId, x.GrossStrokes, x.AdjustedGrossStrokes, x.MatchScheduleId, x.GolferId, x.TeeId))
                 .FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<GetScoreResponse?>> GetScoresByGolferId(int golferId)
         {
-            return await _context.Scores.Select(x => new GetScoreResponse(x.ScoreId, x.GrossStrokes, x.AdjustedGrossStrokes, x.MatchScheduleId, x.GolferId, x.CourseId)).ToListAsync();
+            return await _context.Scores.Select(x => new GetScoreResponse(x.ScoreId, x.GrossStrokes, x.AdjustedGrossStrokes, x.MatchScheduleId, x.GolferId, x.TeeId)).ToListAsync();
         }
     }
 }

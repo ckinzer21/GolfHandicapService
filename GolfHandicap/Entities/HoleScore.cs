@@ -7,6 +7,6 @@
         public int Par { get; set; }
         public int StrokesReceived { get; set; }
         public int ActualStrokes { get; set; }
-        public Score Score { get; set; } = new Score();
+        public Score? Score { get; set; }
     }
 }

@@ -5,7 +5,7 @@ namespace GolfHandicap.Features.Courses
 {
     public interface ICreateCourseHandler
     {
-        Task Create(CreateCourseRequest request);
+        Task Create(IEnumerable<CreateCourseRequest> requests);
     }
 
     public class CreateCourseHandler : ICreateCourseHandler
@@ -17,21 +17,29 @@ namespace GolfHandicap.Features.Courses
             _context = context;
         }
 
-        public async Task Create(CreateCourseRequest request)
+        public async Task Create(IEnumerable<CreateCourseRequest> requests)
         {
-            var course = new Course
+            foreach(var request in requests)
             {
-                Name = request.Name,
-                Tees = request.TeeLookupRequest.Select(t => new TeeLookup
+                var course = new Course
+                {
+                    Name = request.Name
+                };
+
+                _context.Courses.Add(course);
+                await _context.SaveChangesAsync();
+
+                var tees = request.Tees.Select(t => new Tee
                 {
                     Name = t.TeeName,
                     CourseRating = t.CourseRating,
-                    Slope = t.Slope
-                }).ToList()
-            };
+                    Slope = t.Slope,
+                    Course = course
+                }).ToList();
 
-            _context.Courses.Add(course);
-            await _context.SaveChangesAsync();
+                _context.Tees.AddRange(tees);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

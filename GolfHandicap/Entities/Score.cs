@@ -1,4 +1,6 @@
-﻿namespace GolfHandicap.Entities
+﻿using System.Text.Json.Serialization;
+
+namespace GolfHandicap.Entities
 {
     public class Score
     {
@@ -7,12 +9,10 @@
         public int AdjustedGrossStrokes { get; set; }
         public int MatchScheduleId { get; set; }
         public int GolferId { get; set; }
-        public int CourseId { get; set; }
-        public int TeeLookupId { get; set; }
-        public MatchSchedule MatchSchedule { get; set; } = new MatchSchedule();
-        public Golfer Golfer { get; set; } = new Golfer();
-        public Course Course { get; set; } = new Course();
-        public ICollection<HoleScore> HolesScore { get; set; } = new List<HoleScore>();
-        public TeeLookup TeeLookup { get; set; } = new TeeLookup();
+        public int TeeId { get; set; }
+        public MatchSchedule? MatchSchedule { get; set; }
+        public Golfer? Golfer { get; set; }
+        public ICollection<HoleScore>? HolesScore { get; set; }
+        public Tee? Tee { get; set; }
     }
 }

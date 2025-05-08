@@ -19,7 +19,7 @@ namespace GolfHandicap.Features.Golfers.Get.GetById
         {
             var golfer = await _context.Golfers.FirstOrDefaultAsync(g => g.GolferId == golferId);
             if (golfer == null) throw new Exception("No Golfer Found");
-            (double, int) handicapIndexAndRounded = await _getHandicap.GetIndexAndRounded(golfer.GolferId);
+            (double?, int?) handicapIndexAndRounded = await _getHandicap.GetIndexAndRounded(golfer.GolferId);
             return new GetGolferResponse(golfer.GolferId, golfer.Name, golfer.Email, handicapIndexAndRounded.Item1, handicapIndexAndRounded.Item2);
         }
 
@@ -32,7 +32,7 @@ namespace GolfHandicap.Features.Golfers.Get.GetById
 
             foreach (var golfer in golfers)
             {
-                (double, int) handicapIndexAndRounded = await _getHandicap.GetIndexAndRounded(golfer.GolferId);
+                (double?, int?) handicapIndexAndRounded = await _getHandicap.GetIndexAndRounded(golfer.GolferId);
                 var getGolferResponse = new GetGolferResponse(golfer.GolferId, golfer.Name, golfer.Email, handicapIndexAndRounded.Item1, handicapIndexAndRounded.Item2);
                 getGolferResponses.Add(getGolferResponse);
             }

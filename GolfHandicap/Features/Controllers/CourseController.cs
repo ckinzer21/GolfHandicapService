@@ -1,5 +1,4 @@
-﻿using GolfHandicap.Entities;
-using GolfHandicap.Features.Courses;
+﻿using GolfHandicap.Features.Courses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GolfHandicap.Features.Controllers
@@ -15,12 +14,12 @@ namespace GolfHandicap.Features.Controllers
             _createCourseHandler = createCourseHandler;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> CreateCourse([FromBody] CreateCourseRequest request)
+        [HttpPost]
+        public async Task<IActionResult> CreateCourse([FromBody] IEnumerable<CreateCourseRequest> requests)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            await _createCourseHandler.Create(request);
+            await _createCourseHandler.Create(requests);
 
             return Ok();
         }

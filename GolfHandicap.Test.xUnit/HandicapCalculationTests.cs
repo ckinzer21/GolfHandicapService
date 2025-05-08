@@ -63,46 +63,31 @@ namespace GolfHandicap.Test.xUnit
 
         private Weight Weighting() => new Weight { WeightId = 1, Value = 0.8 };
         
-        public Course Baldwin()
+        public Tee Baldwin()
         {
-            return new Course
-            {
-                CourseId = 1,
-                Name = "Baldwin",
-                Tees = new[] { new TeeLookup { Name = "Blue", CourseRating = 37.4, Slope = 127 } } 
-            };
+            return new Tee { Name = "Blue", CourseRating = 37.4, Slope = 127 };
         }
 
-        public Course Furnance()
+        public Tee Furnance()
         {
-            return new Course
-            {
-                CourseId = 2,
-                Name = "Furnance",
-                Tees = new[] { new TeeLookup { Name = "Blue", CourseRating = 36.1, Slope = 127 } }
-            };
+            return new Tee { Name = "Blue", CourseRating = 36.1, Slope = 127 };
         }
 
-        public Course Chippewa()
+        public Tee Chippewa()
         {
-            return new Course
-            {
-                CourseId = 3,
-                Name = "Chippewa",
-                Tees = new[] { new TeeLookup { Name = "Blue", CourseRating = 35.6, Slope = 123 } }
-            };
+            return new Tee { Name = "Blue", CourseRating = 35.6, Slope = 123 };
         }
 
         public List<Score> FakePastSixScoresBaldwin()
         {
             return new List<Score>
             {
-                new Score { ScoreId = 1, GolferId = 1, MatchScheduleId = 1, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Baldwin()},
-                new Score { ScoreId = 2, GolferId = 1, MatchScheduleId = 2, GrossStrokes = 42, AdjustedGrossStrokes = 42, Course = Baldwin()},
-                new Score { ScoreId = 3, GolferId = 1, MatchScheduleId = 3, GrossStrokes = 48, AdjustedGrossStrokes = 41, Course = Baldwin()},
-                new Score { ScoreId = 4, GolferId = 1, MatchScheduleId = 4, GrossStrokes = 40, AdjustedGrossStrokes = 36, Course = Baldwin()},
-                new Score { ScoreId = 5, GolferId = 1, MatchScheduleId = 5, GrossStrokes = 50, AdjustedGrossStrokes = 44, Course = Baldwin()},
-                new Score { ScoreId = 6, GolferId = 1, MatchScheduleId = 6, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Baldwin()},
+                new Score { ScoreId = 1, GolferId = 1, MatchScheduleId = 1, GrossStrokes = 44, AdjustedGrossStrokes = 42, Tee = Baldwin()},
+                new Score { ScoreId = 2, GolferId = 1, MatchScheduleId = 2, GrossStrokes = 42, AdjustedGrossStrokes = 42, Tee = Baldwin()},
+                new Score { ScoreId = 3, GolferId = 1, MatchScheduleId = 3, GrossStrokes = 48, AdjustedGrossStrokes = 41, Tee = Baldwin()},
+                new Score { ScoreId = 4, GolferId = 1, MatchScheduleId = 4, GrossStrokes = 40, AdjustedGrossStrokes = 36, Tee = Baldwin()},
+                new Score { ScoreId = 5, GolferId = 1, MatchScheduleId = 5, GrossStrokes = 50, AdjustedGrossStrokes = 44, Tee = Baldwin()},
+                new Score { ScoreId = 6, GolferId = 1, MatchScheduleId = 6, GrossStrokes = 44, AdjustedGrossStrokes = 42, Tee = Baldwin()},
             };
         }
 
@@ -110,12 +95,12 @@ namespace GolfHandicap.Test.xUnit
         {
             return new List<Score>
             {
-                new Score { ScoreId = 1, GolferId = 1, MatchScheduleId = 1, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Furnance()},
-                new Score { ScoreId = 2, GolferId = 1, MatchScheduleId = 2, GrossStrokes = 42, AdjustedGrossStrokes = 42, Course = Furnance()},
-                new Score { ScoreId = 3, GolferId = 1, MatchScheduleId = 3, GrossStrokes = 48, AdjustedGrossStrokes = 41, Course = Furnance()},
-                new Score { ScoreId = 4, GolferId = 1, MatchScheduleId = 4, GrossStrokes = 40, AdjustedGrossStrokes = 36, Course = Furnance()},
-                new Score { ScoreId = 5, GolferId = 1, MatchScheduleId = 5, GrossStrokes = 50, AdjustedGrossStrokes = 44, Course = Furnance()},
-                new Score { ScoreId = 6, GolferId = 1, MatchScheduleId = 6, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Furnance()},
+                new Score { ScoreId = 1, GolferId = 1, MatchScheduleId = 1, GrossStrokes = 44, AdjustedGrossStrokes = 42, Tee = Furnance()},
+                new Score { ScoreId = 2, GolferId = 1, MatchScheduleId = 2, GrossStrokes = 42, AdjustedGrossStrokes = 42, Tee = Furnance()},
+                new Score { ScoreId = 3, GolferId = 1, MatchScheduleId = 3, GrossStrokes = 48, AdjustedGrossStrokes = 41, Tee = Furnance()},
+                new Score { ScoreId = 4, GolferId = 1, MatchScheduleId = 4, GrossStrokes = 40, AdjustedGrossStrokes = 36, Tee = Furnance()},
+                new Score { ScoreId = 5, GolferId = 1, MatchScheduleId = 5, GrossStrokes = 50, AdjustedGrossStrokes = 44, Tee = Furnance()},
+                new Score { ScoreId = 6, GolferId = 1, MatchScheduleId = 6, GrossStrokes = 44, AdjustedGrossStrokes = 42, Tee = Furnance()},
             };
         }
 
@@ -123,12 +108,12 @@ namespace GolfHandicap.Test.xUnit
         {
             return new List<Score>
             {
-                new Score { ScoreId = 1, GolferId = 1, MatchScheduleId = 1, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Chippewa()},
-                new Score { ScoreId = 2, GolferId = 1, MatchScheduleId = 2, GrossStrokes = 42, AdjustedGrossStrokes = 42, Course = Chippewa()},
-                new Score { ScoreId = 3, GolferId = 1, MatchScheduleId = 3, GrossStrokes = 48, AdjustedGrossStrokes = 41, Course = Chippewa()},
-                new Score { ScoreId = 4, GolferId = 1, MatchScheduleId = 4, GrossStrokes = 40, AdjustedGrossStrokes = 36, Course = Chippewa()},
-                new Score { ScoreId = 5, GolferId = 1, MatchScheduleId = 5, GrossStrokes = 50, AdjustedGrossStrokes = 44, Course = Chippewa()},
-                new Score { ScoreId = 6, GolferId = 1, MatchScheduleId = 6, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Chippewa()},
+                new Score { ScoreId = 1, GolferId = 1, MatchScheduleId = 1, GrossStrokes = 44, AdjustedGrossStrokes = 42, Tee = Chippewa()},
+                new Score { ScoreId = 2, GolferId = 1, MatchScheduleId = 2, GrossStrokes = 42, AdjustedGrossStrokes = 42, Tee = Chippewa()},
+                new Score { ScoreId = 3, GolferId = 1, MatchScheduleId = 3, GrossStrokes = 48, AdjustedGrossStrokes = 41, Tee = Chippewa()},
+                new Score { ScoreId = 4, GolferId = 1, MatchScheduleId = 4, GrossStrokes = 40, AdjustedGrossStrokes = 36, Tee = Chippewa()},
+                new Score { ScoreId = 5, GolferId = 1, MatchScheduleId = 5, GrossStrokes = 50, AdjustedGrossStrokes = 44, Tee = Chippewa()},
+                new Score { ScoreId = 6, GolferId = 1, MatchScheduleId = 6, GrossStrokes = 44, AdjustedGrossStrokes = 42, Tee = Chippewa()},
             };
         }
 
@@ -136,12 +121,12 @@ namespace GolfHandicap.Test.xUnit
         {
             return new List<Score>
             {
-                new Score { ScoreId = 1, GolferId = 1, MatchScheduleId = 1, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Baldwin()},
-                new Score { ScoreId = 2, GolferId = 1, MatchScheduleId = 2, GrossStrokes = 42, AdjustedGrossStrokes = 42, Course = Furnance()},
-                new Score { ScoreId = 3, GolferId = 1, MatchScheduleId = 3, GrossStrokes = 48, AdjustedGrossStrokes = 41, Course = Chippewa()},
-                new Score { ScoreId = 4, GolferId = 1, MatchScheduleId = 4, GrossStrokes = 40, AdjustedGrossStrokes = 36, Course = Baldwin()},
-                new Score { ScoreId = 5, GolferId = 1, MatchScheduleId = 5, GrossStrokes = 50, AdjustedGrossStrokes = 44, Course = Furnance()},
-                new Score { ScoreId = 6, GolferId = 1, MatchScheduleId = 6, GrossStrokes = 44, AdjustedGrossStrokes = 42, Course = Chippewa()},
+                new Score { ScoreId = 1, GolferId = 1, MatchScheduleId = 1, GrossStrokes = 44, AdjustedGrossStrokes = 42, Tee = Baldwin()},
+                new Score { ScoreId = 2, GolferId = 1, MatchScheduleId = 2, GrossStrokes = 42, AdjustedGrossStrokes = 42, Tee = Furnance()},
+                new Score { ScoreId = 3, GolferId = 1, MatchScheduleId = 3, GrossStrokes = 48, AdjustedGrossStrokes = 41, Tee = Chippewa()},
+                new Score { ScoreId = 4, GolferId = 1, MatchScheduleId = 4, GrossStrokes = 40, AdjustedGrossStrokes = 36, Tee = Baldwin()},
+                new Score { ScoreId = 5, GolferId = 1, MatchScheduleId = 5, GrossStrokes = 50, AdjustedGrossStrokes = 44, Tee = Furnance()},
+                new Score { ScoreId = 6, GolferId = 1, MatchScheduleId = 6, GrossStrokes = 44, AdjustedGrossStrokes = 42, Tee = Chippewa()},
             };
         }
     }

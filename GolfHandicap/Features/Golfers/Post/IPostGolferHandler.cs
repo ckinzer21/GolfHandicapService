@@ -2,7 +2,8 @@
 {
     public interface IPostGolferHandler
     {
-        public Task<PostGolferResponse> CreateGolfer(string name, string email);
-        public Task UpdateGolfer(int golferId, string name, string email, bool isDeleted);
+        public Task<PostGolferResponse> CreateGolfer(CreateGolferRequest request);
+        public Task UpdateGolfer(UpdateGolferRequest request);
+        Task<IEnumerable<PostGolferResponse>> CreateGolfers(IEnumerable<CreateGolferRequest> requests);
     }
 }

@@ -10,9 +10,9 @@ namespace GolfHandicap.Features.Golfers.Post
 
         public PostGolferHandler(DataContext context) => _context = context;
 
-        public async Task<PostGolferResponse> CreateGolfer(string name, string email)
+        public async Task<PostGolferResponse> CreateGolfer(CreateGolferRequest request)
         {
-            var golfer = new Golfer { Name = name, Email = email };
+            var golfer = new Golfer { Name = request.name, Email = request.email };
 
             _context.Add(golfer);
             await _context.SaveChangesAsync();
@@ -20,16 +20,29 @@ namespace GolfHandicap.Features.Golfers.Post
             return new PostGolferResponse(golfer.GolferId, golfer.Name, golfer.Email);
         }
 
-        public async Task UpdateGolfer(int golferId, string name, string email, bool isDeleted)
+        public async Task UpdateGolfer(UpdateGolferRequest request)
         {
-            var golfer = await _context.Golfers.FirstOrDefaultAsync(g => g.GolferId == golferId);
+            var golfer = await _context.Golfers.FirstOrDefaultAsync(g => g.GolferId == request.golferId);
 
             if (golfer == null) return;// not good, need to message that something failed or that there was no golfer to update
 
-            golfer.Name = name;
-            golfer.Email = email;
-            golfer.IsDeleted = isDeleted;
+            golfer.Name = request.name;
+            golfer.Email = request.email;
+            golfer.IsDeleted = request.isDeleted;
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<PostGolferResponse>> CreateGolfers(IEnumerable<CreateGolferRequest> requests)
+        {
+            List<PostGolferResponse> responses = new List<PostGolferResponse>();
+
+            foreach(var request in requests)
+            {
+                var response = await CreateGolfer(request);
+                responses.Add(response);
+            }
+
+            return responses;
         }
     }
 }

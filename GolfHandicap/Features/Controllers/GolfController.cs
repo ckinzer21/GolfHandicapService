@@ -31,11 +31,18 @@ namespace GolfHandicap.Features.Controllers
             return golfers != null ? Ok(golfers) : NotFound();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] string name, string email)
+        [HttpPost("CreateGolfer")]
+        public async Task<IActionResult> CreateGolfer([FromBody] CreateGolferRequest request)
         {
-            var golfer = await _postGolferHandler.CreateGolfer(name, email);
-            return CreatedAtAction(nameof(Create), new { golfer.id }, golfer);
+            var golfer = await _postGolferHandler.CreateGolfer(request);
+            return CreatedAtAction(nameof(CreateGolfer), new { golfer.id }, golfer);
+        }
+
+        [HttpPost("CreateGolfers")]
+        public async Task<IActionResult> CreateGolfers([FromBody] IEnumerable<CreateGolferRequest> requests)
+        {
+            var golfers = await _postGolferHandler.CreateGolfers(requests);
+            return Ok();
         }
     }
 }
