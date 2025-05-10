@@ -1,5 +1,44 @@
 Using a mix of Vertical Slice and Clean Code Architecture.  VSA has too many files, and felt like I could reuse some of them instead of having the bare mininum in them.
 
+# Scheduler
+
+### MatchSchedule
+
+Done by total number of golfers by flight
+if even
+Total Matches = (n(n-1)/2) + Majors
+if odd(blinds)
+Total Matches = (n(n-1)/2) + Majors + n
+n = number of golfers
+
+if even
+Total Weeks = n-1
+if odd
+Total Weeks = n
+
+Matches per week = n/2 rounded up(handles blinds)
+
+Expecting a startdate, the major dates, and the flight
+
+The code works by looping through the total weeks(i), then a nested loop(j) for matches per week
+if the startdate * i == a major schedule date, we will skip a week
+and track the amount of times we skipped a week.
+figuring out what the date will should be for the match is the startdate.adddays(i+number of times we skipped for majors)*7
+if there is an odd number of golfers, add a blind match
+then the next iteration happens
+
+### GolfMatches
+
+Rotating Round Robin
+first player will stay in it's position and will play the last player in the list
+once we go through the list, rotate it clockwise, keeping the first player in the same position
+then loop through again
+for blinds, I added a 0 to the list and just didn't add a match for it
+[1][2,3,4,5,6]
+[1][6,2,3,4,5]
+[1][5,6,2,3,4]...
+
+
 
 # Course Rating and slope
 Senaca doesn't post their 9 hole ratings, so here is how it is calculated

@@ -4,46 +4,98 @@ namespace GolfHandicap.Features.Matches.Post.GolfMatches.Scheduler
 {
     public class ScheduleYearlySchedule : IScheduleYearlySchedule
     {
-        public IEnumerable<GolfMatchDto> Schedule(IEnumerable<MatchSchedule> matchSchedules, List<int> golferIds)
+        //Round-Robin Rotating table
+        public IEnumerable<GolfMatch> Schedule(IEnumerable<MatchSchedule> matchSchedules, List<int> golferIds)
         {
             var random = Random.Shared;
-            var result = new List<GolfMatchDto>();
+            var result = new List<GolfMatch>();
+            var usedPairs = new HashSet<(int, int)>();
 
-            var groupedByWeek = matchSchedules
+            var filteredMatches = matchSchedules.Where(m => m.MajorId == null);
+
+            var groupedByWeek = filteredMatches
                 .GroupBy(ms => new { ms.Week, ms.Date.Year })
                 .OrderBy(g => g.Key.Year)
                 .ThenBy(g => g.Key.Week);
 
+            var matchesPerWeek = (int)Math.Floor((decimal)golferIds.Count / 2);
+            var fixedGolfer = golferIds.FirstOrDefault();
+            if (golferIds.Count % 2 != 0) golferIds.Add(0);//blind holder
+
+            //blind will be at the end of list, so fixed golfer will play them first, then it will rotate
+            //[1][2,3,4,5,6,7] | [8/9/10/11/12/13/Blind]
+            //(1,Blind)(2,13)(3,12)...
+            //Rotate clockwise
+            //[1][Blind,2,3,4,5,6,7] | [8,9,10,11,12,13]
+            //(1,13)(Blind,12)(2,11) ...
+
             foreach (var weekGroup in groupedByWeek)
             {
-                // What I'm doing is grouping schedule by year and weeks since we our matches are always in the same year during the summer
-                // Then we grab those scheduled dates, then schedule with no blinds, and the blind
-                // Then we iterate for all the matches that week, adding two golfers at a time
-                // After that, we check if there is a blind, then add it if there is one
+                var weekResult = new List<GolfMatch>();
                 var schedules = weekGroup.OrderBy(ms => ms.MatchScheduleId).ToList();
                 var matchSlots = schedules.Where(ms => !ms.Blind).ToList();
                 var blindSlot = schedules.FirstOrDefault(ms => ms.Blind);
+                var matchIndex = 0;
+                var wasBlindSet = false;
 
-                var shuffledGolfers = golferIds.OrderBy(_ => random.Next()).ToList();
-                int i = 0, matchIndex = 0;
-
-                while (i + 1 < shuffledGolfers.Count && matchIndex < matchSlots.Count)
+                for (int i = 1; matchIndex < matchesPerWeek; i++)
                 {
-                    var a = shuffledGolfers[i];
-                    var b = shuffledGolfers[i + 1];
+                    for (int j = golferIds.Count - i; matchIndex < matchesPerWeek; j--)
+                    {
+                        // fixedGolfer always plays last index.  should happen first before rotation
+                        if (j == golferIds.Count - 1)
+                        {
+                            if (golferIds[j] == 0 && blindSlot is not null)
+                            {
+                                weekResult.Add(new GolfMatch { MatchScheduleId = blindSlot.MatchScheduleId, GolferId = fixedGolfer });
+                                wasBlindSet = true;
+                                continue;
+                            }
+                            weekResult.Add(new GolfMatch { MatchScheduleId = matchSlots[matchIndex].MatchScheduleId, GolferId = fixedGolfer });
+                            weekResult.Add(new GolfMatch { MatchScheduleId = matchSlots[matchIndex].MatchScheduleId, GolferId = golferIds[j] });
+                            matchIndex++;
+                        }
+                        else
+                        {
+                            if ((golferIds[j] == 0 || golferIds[i] == 0) && blindSlot is not null)
+                            {
+                                if (golferIds[i] == 0)
+                                    weekResult.Add(new GolfMatch { MatchScheduleId = blindSlot.MatchScheduleId, GolferId = golferIds[j] });
+                                if (golferIds[j] == 0)
+                                    weekResult.Add(new GolfMatch { MatchScheduleId = blindSlot.MatchScheduleId, GolferId = golferIds[i] });
+                                i++;
+                                wasBlindSet = true;
+                                continue;
+                            }
+                            else
+                            {
+                                weekResult.Add(new GolfMatch { MatchScheduleId = matchSlots[matchIndex].MatchScheduleId, GolferId = golferIds[i] });
+                                weekResult.Add(new GolfMatch { MatchScheduleId = matchSlots[matchIndex].MatchScheduleId, GolferId = golferIds[j] });
+                            }
+                            matchIndex++;
+                            i++;
+                        }
 
-                    result.Add(new GolfMatchDto { MatchScheduleId = matchSlots[matchIndex].MatchScheduleId, GolferId = a });
-                    result.Add(new GolfMatchDto { MatchScheduleId = matchSlots[matchIndex].MatchScheduleId, GolferId = b });
-
-                    i += 2;
-                    matchIndex++;
+                        // Handles if the blind is the last one to get picked up, otherwise matchIndex < matchesPerWeek and won't set it
+                        if (!wasBlindSet && matchIndex == matchesPerWeek)
+                        {
+                            j--;
+                            if ((golferIds[j] == 0 || golferIds[i] == 0) && blindSlot is not null)
+                            {
+                                if (golferIds[i] == 0)
+                                    weekResult.Add(new GolfMatch { MatchScheduleId = blindSlot.MatchScheduleId, GolferId = golferIds[j] });
+                                if (golferIds[j] == 0)
+                                    weekResult.Add(new GolfMatch { MatchScheduleId = blindSlot.MatchScheduleId, GolferId = golferIds[i] });
+                            }
+                        }
+                    }
                 }
 
-                // Handle blind
-                if (i < shuffledGolfers.Count && blindSlot is not null)
-                {
-                    result.Add(new GolfMatchDto { MatchScheduleId = blindSlot.MatchScheduleId, GolferId = shuffledGolfers[i], Blind = true });
-                }
+                //Rotate the last value to the beginning, ahead of the fixed
+                var lastIndexValue = golferIds.LastOrDefault();
+                golferIds.RemoveAt(golferIds.Count - 1);
+                golferIds.Insert(1, lastIndexValue);
+                result.AddRange(weekResult);
             }
 
             return result;

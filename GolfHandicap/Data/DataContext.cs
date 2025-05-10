@@ -44,7 +44,7 @@ namespace GolfHandicap.Data
                 .HasForeignKey(s => s.GolferId);
 
             modelBuilder.Entity<Golfer>()
-                .HasOne(g => g.FlightLookup);
+                .HasOne(g => g.Flight);
 
             modelBuilder.Entity<Score>()
                 .HasMany(s => s.HolesScore)

@@ -12,7 +12,7 @@ namespace GolfHandicap.Features.Golfers.Post
 
         public async Task<PostGolferResponse> CreateGolfer(CreateGolferRequest request)
         {
-            var golfer = new Golfer { Name = request.name, Email = request.email };
+            var golfer = new Golfer { Name = request.Name, Email = request.Email, FlightId = request.FlightId };
 
             _context.Add(golfer);
             await _context.SaveChangesAsync();
@@ -22,13 +22,14 @@ namespace GolfHandicap.Features.Golfers.Post
 
         public async Task UpdateGolfer(UpdateGolferRequest request)
         {
-            var golfer = await _context.Golfers.FirstOrDefaultAsync(g => g.GolferId == request.golferId);
+            var golfer = await _context.Golfers.FirstOrDefaultAsync(g => g.GolferId == request.GolferId);
 
             if (golfer == null) return;// not good, need to message that something failed or that there was no golfer to update
 
-            golfer.Name = request.name;
-            golfer.Email = request.email;
-            golfer.IsDeleted = request.isDeleted;
+            golfer.Name = request.Name;
+            golfer.Email = request.Email;
+            golfer.FlightId = request.FlightId;
+            golfer.IsDeleted = request.IsDeleted;
             await _context.SaveChangesAsync();
         }
 

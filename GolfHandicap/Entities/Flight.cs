@@ -2,7 +2,7 @@
 {
     public class Flight
     {
-        public int FlightLookupId { get; set; }
+        public int FlightId { get; set; }
         public string? Name { get; set; }
     }
 }

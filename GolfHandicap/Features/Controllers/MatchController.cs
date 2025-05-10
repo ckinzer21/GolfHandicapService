@@ -23,10 +23,11 @@ namespace GolfHandicap.Features.Controller
             return Ok();// not good, need to handle errors
         }
 
-        //[HttpPost("schedule")]
-        //public async Task<IActionResult> CreateSchedule([FromBody] ScheduleRequest request)
-        //{
-
-        //}
+        [HttpPost("schedule")]
+        public async Task<IActionResult> CreateSchedule([FromBody] ScheduleRequest request)
+        {
+            await _postHandler.CreateScheduleByFlight(request);
+            return Ok();
+        }
     }
 }
