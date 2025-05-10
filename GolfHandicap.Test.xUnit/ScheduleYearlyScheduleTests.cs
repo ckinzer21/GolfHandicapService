@@ -212,21 +212,21 @@ namespace GolfHandicap.Test.xUnit
         //{
         //    var golfMatches = new List<GolfMatch>();
         //    var pairs = new HashSet<(int, int)>();
-        //    var golfers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 0 };
+        //    var golfers = new List<int> { 1, 2, 3, 4, 5, 0 };
         //    var shorten = 0;
         //    var start = 1;
-        //    var end = 13;
+        //    var end = golfers.Count - 1;
 
-        //    for (int i = 0; i < golfers.Count-1; i++)
+        //    for (int i = 0; i < golfers.Count - 1; i++)
         //    {
-        //        while(start <= end-shorten)
+        //        while (start <= end - shorten)
         //        {
         //            var last = golfers.LastOrDefault();
 
         //            if (golfers[i] == 0)
         //            {
         //                var (a, b) = golfers[i] < last ? (golfers[i], last) : (last, golfers[i]);
-        //                pairs.Add((a,b));
+        //                pairs.Add((a, b));
         //            }
 
         //            else if (last == 0)
@@ -237,38 +237,39 @@ namespace GolfHandicap.Test.xUnit
         //            else
         //            {
         //                var (a, b) = golfers[i] < last ? (golfers[i], last) : (last, golfers[i]);
-        //                pairs.Add((a,b));
+        //                pairs.Add((a, b));
         //            }
 
         //            golfers.RemoveAt(golfers.Count - 1);
-        //            golfers.Insert(i+1, last);
+        //            golfers.Insert(i + 1, last);
         //            start++;
         //        }
         //        end += 13;
-                
+
         //        shorten++;
         //    }
 
-        //    int counter = 1;
-        //    int blindCounter = 7;
-        //    foreach(var pair in pairs)
+        //    var result = new List<GolfMatch>();
+        //    int matchScheduleId = 1;
+
+        //    foreach (var (a, b) in pairs)
         //    {
-        //        if (pair.Item1 == 0)
+        //        if (a == 0)
         //        {
-        //            var match = new GolfMatch { GolferId = pair.Item2, MatchScheduleId = blindCounter };
-        //            blindCounter += 7;
-        //            golfMatches.Add(match);
+        //            result.Add(new GolfMatch { MatchScheduleId = matchScheduleId, GolferId = b });
+        //        }
+        //        else if (b == 0)
+        //        {
+        //            result.Add(new GolfMatch { MatchScheduleId = matchScheduleId, GolferId = a });
         //        }
         //        else
         //        {
-        //            var matchA = new GolfMatch { GolferId = pair.Item1, MatchScheduleId = counter };
-        //            counter++;
-        //            var matchB = new GolfMatch { GolferId = pair.Item2, MatchScheduleId = counter };
-        //            counter++;
-        //            golfMatches.Add(matchA);
-        //            golfMatches.Add(matchB);
+        //            result.Add(new GolfMatch { MatchScheduleId = matchScheduleId, GolferId = a });
+        //            result.Add(new GolfMatch { MatchScheduleId = matchScheduleId, GolferId = b });
         //        }
+        //        matchScheduleId++;
         //    }
+
         //    return golfMatches;
         //}
     }

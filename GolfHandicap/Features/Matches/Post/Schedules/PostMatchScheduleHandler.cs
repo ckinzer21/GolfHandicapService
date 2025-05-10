@@ -4,7 +4,6 @@ using GolfHandicap.Entities;
 using GolfHandicap.Features.Matches.Post.GolfMatches;
 using GolfHandicap.Features.Matches.Post.Schedules;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace GolfHandicap.Features.Matches.Post.Schedule
 {
@@ -32,7 +31,9 @@ namespace GolfHandicap.Features.Matches.Post.Schedule
 
             var golferIds = golfers.Select(g => g.GolferId).ToList();
             var golfmatches = _scheduleYearlySchedule.Schedule(matchSchedule, golferIds);
-            _context.GolfMatches.AddRange(golfmatches);
+            var random = Random.Shared;
+            var shuffledMatches = golfmatches.OrderBy(_ => random.Next()).ToList();
+            _context.GolfMatches.AddRange(shuffledMatches);
             await _context.SaveChangesAsync();
         }
 

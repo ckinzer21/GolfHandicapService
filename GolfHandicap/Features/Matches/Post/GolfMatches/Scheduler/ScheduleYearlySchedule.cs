@@ -7,9 +7,7 @@ namespace GolfHandicap.Features.Matches.Post.GolfMatches.Scheduler
         //Round-Robin Rotating table
         public IEnumerable<GolfMatch> Schedule(IEnumerable<MatchSchedule> matchSchedules, List<int> golferIds)
         {
-            var random = Random.Shared;
             var result = new List<GolfMatch>();
-            var usedPairs = new HashSet<(int, int)>();
 
             var filteredMatches = matchSchedules.Where(m => m.MajorId == null);
 
