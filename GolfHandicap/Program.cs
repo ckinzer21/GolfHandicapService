@@ -3,6 +3,7 @@ using GolfHandicap.Data;
 using GolfHandicap.Features.Golfers.Get;
 using GolfHandicap.Features.Golfers.Get.GetById;
 using GolfHandicap.Features.Golfers.Post;
+using GolfHandicap.Features.Matches.Get;
 using GolfHandicap.Features.Matches.Post.GolfMatches;
 using GolfHandicap.Features.Matches.Post.GolfMatches.Scheduler;
 using GolfHandicap.Features.Matches.Post.Schedule;
@@ -39,6 +40,7 @@ namespace GolfHandicap
             builder.Services.AddTransient<IHandicapCalculation, HandicapCalculation>();
             builder.Services.AddTransient<IGenerateMatchSchedule, GenerateMatchSchedule>();
             builder.Services.AddTransient<IPostSetupHandler, PostSetupHandler>();
+            builder.Services.AddTransient<IGetGolfMatchHandler,  GetGolfMatchHandler>();
             builder.Services.Configure<SlopeSettings>(builder.Configuration.GetSection("SlopeSettings"));
             builder.Services.AddAutoMapper(typeof(Program));
             //builder.Logging.ClearProviders();

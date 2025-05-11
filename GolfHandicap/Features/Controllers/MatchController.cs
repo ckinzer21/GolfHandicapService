@@ -1,4 +1,5 @@
-﻿using GolfHandicap.Features.Matches.Post.Schedule;
+﻿using GolfHandicap.Features.Matches.Get;
+using GolfHandicap.Features.Matches.Post.Schedule;
 using GolfHandicap.Features.Matches.Post.Schedules;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,12 @@ namespace GolfHandicap.Features.Controller
     public class MatchController : ControllerBase
     {
         private readonly IPostMatchScheduleHandler _postHandler;
+        private readonly IGetGolfMatchHandler _getHandler;
 
-        public MatchController(IPostMatchScheduleHandler postHandler)
+        public MatchController(IPostMatchScheduleHandler postHandler, IGetGolfMatchHandler getHandler)
         {
             _postHandler = postHandler;
+            _getHandler = getHandler;
         }
 
         [HttpPost("schedule")]
@@ -21,6 +24,14 @@ namespace GolfHandicap.Features.Controller
             if (!ModelState.IsValid) return BadRequest(ModelState);
             await _postHandler.CreateScheduleByFlight(request);
             return Ok();
+        }
+
+        [HttpGet("getgolfmatches")]
+        public async Task<IActionResult> GetGolfMatches(int year)
+        {
+            if (year <= 0) return BadRequest("year must be supplied");
+            var result = await _getHandler.GetGolfMatch(year);
+            return Ok(result);
         }
     }
 }

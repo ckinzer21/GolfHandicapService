@@ -56,16 +56,5 @@ namespace GolfHandicap.Features.Controllers
 
             return Ok(handicap);
         }
-
-        [HttpGet("Handicap")]
-        public async Task<IActionResult> GetHandicapIndex(int golferId)
-        {
-            if (golferId <= 0) return BadRequest("golferId is required to get the handicap");
-            var handicap = await _getScoreHandler.GetHandicapIndex(golferId);
-
-            if (!string.IsNullOrEmpty(handicap.Error)) return BadRequest(handicap.Error);
-
-            return Ok(handicap);
-        }
     }
 }

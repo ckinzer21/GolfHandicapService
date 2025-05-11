@@ -13,6 +13,7 @@ namespace GolfHandicap.Data
         public DbSet<Course> Course { get; set; }
         public DbSet<Tee> Tee { get; set; }
         public DbSet<Major> Major { get; set; }
+        public DbSet<GolfOpponent> GolfOpponent { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -68,6 +69,8 @@ namespace GolfHandicap.Data
                 .Property(t => t.Name)
                 .IsRequired()
                 .HasMaxLength(50);
+
+            modelBuilder.Entity<GolfOpponent>().HasNoKey();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
