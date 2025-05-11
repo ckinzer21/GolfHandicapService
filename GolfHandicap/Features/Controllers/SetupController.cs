@@ -1,4 +1,5 @@
-﻿using GolfHandicap.Features.Setup;
+﻿using GolfHandicap.Entities;
+using GolfHandicap.Features.Setup;
 using GolfHandicap.Features.Setup.Courses;
 using GolfHandicap.Features.Setup.Flights;
 using GolfHandicap.Features.Setup.Majors;
@@ -30,6 +31,8 @@ namespace GolfHandicap.Features.Controllers
         [HttpPost("createmajor")]
         public IActionResult CreateMajors(IEnumerable<PostMajorRequest> requests)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             _postSetupHandler.CreateMajors(requests);
             return Ok();
         }
@@ -37,6 +40,8 @@ namespace GolfHandicap.Features.Controllers
         [HttpPost("createflight")]
         public IActionResult CreateFlight(IEnumerable<PostFlightRequest> requests)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             _postSetupHandler.CreateFlight(requests);
             return Ok();
         }
@@ -44,6 +49,7 @@ namespace GolfHandicap.Features.Controllers
         [HttpPost("createweight")]
         public IActionResult CreateWeight(double pct)
         {
+            if (pct <= 0.0) return BadRequest("pct is required to create the weight");
             _postSetupHandler.CreateWeight(pct);
             return Ok();
         }

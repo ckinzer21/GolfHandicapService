@@ -1,5 +1,5 @@
-﻿using GolfHandicap.Common;
-using GolfHandicap.Entities;
+﻿using GolfHandicap.Entities;
+using GolfHandicap.Features.Matches.Post.GolfMatches.Scheduler;
 using GolfHandicap.Features.Matches.Post.Schedules;
 
 namespace GolfHandicap.Test.xUnit

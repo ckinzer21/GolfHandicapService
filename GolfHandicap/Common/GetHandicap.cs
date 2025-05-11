@@ -33,7 +33,7 @@ namespace GolfHandicap.Common
         }
 
         private async Task<List<Score>> GetLastSixScores(int golferId) =>
-            await _context.Scores
+            await _context.Score
                 .Where(s => s.GolferId == golferId && s.MatchSchedule != null)
                 .Include(s => s.MatchSchedule) // ensures matchschedule is loaded
                 .Include(s => s.Tee)

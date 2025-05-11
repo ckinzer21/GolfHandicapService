@@ -44,7 +44,7 @@ namespace GolfHandicap.Features.Setup
                     Name = request.Name
                 };
 
-                _context.Courses.Add(course);
+                _context.Course.Add(course);
                 await _context.SaveChangesAsync();
 
                 var tees = request.Tees.Select(t => new Tee
@@ -55,7 +55,7 @@ namespace GolfHandicap.Features.Setup
                     Course = course
                 }).ToList();
 
-                _context.Tees.AddRange(tees);
+                _context.Tee.AddRange(tees);
                 await _context.SaveChangesAsync();
             }
         }

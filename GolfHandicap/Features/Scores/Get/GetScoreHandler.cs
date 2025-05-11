@@ -17,7 +17,7 @@ namespace GolfHandicap.Features.Scores.Get
 
         public async Task<GetScoreResponse?> GetScoreByScoreId(int id)
         {
-            return await _context.Scores
+            return await _context.Score
                 .Where(x => x.ScoreId == id)
                 .Select(x => new GetScoreResponse(x.ScoreId, x.GrossStrokes, x.AdjustedGrossStrokes, x.MatchScheduleId, x.GolferId, x.TeeId))
                 .FirstOrDefaultAsync();
@@ -25,7 +25,7 @@ namespace GolfHandicap.Features.Scores.Get
 
         public async Task<IEnumerable<GetScoreResponse?>> GetScoresByGolferId(int golferId)
         {
-            return await _context.Scores.Select(x => new GetScoreResponse(x.ScoreId, x.GrossStrokes, x.AdjustedGrossStrokes, x.MatchScheduleId, x.GolferId, x.TeeId)).ToListAsync();
+            return await _context.Score.Select(x => new GetScoreResponse(x.ScoreId, x.GrossStrokes, x.AdjustedGrossStrokes, x.MatchScheduleId, x.GolferId, x.TeeId)).ToListAsync();
         }
 
         public async Task<HandicapIndexResult> GetHandicapIndex(int golferId)

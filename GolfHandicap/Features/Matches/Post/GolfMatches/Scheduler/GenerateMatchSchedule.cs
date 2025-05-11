@@ -1,7 +1,8 @@
-﻿using GolfHandicap.Entities;
+﻿using GolfHandicap.Common;
+using GolfHandicap.Entities;
 using GolfHandicap.Features.Matches.Post.Schedules;
 
-namespace GolfHandicap.Common
+namespace GolfHandicap.Features.Matches.Post.GolfMatches.Scheduler
 {
     //my thoughts, I should pass in the starting date and the major dates
     //then I'll grab the golfers from A flight, create a list of the majors schedule
@@ -41,7 +42,7 @@ namespace GolfHandicap.Common
                 for (var j = 0; j < matchesPerWeek; j++)
                 {
                     var match = new MatchSchedule();
-                    if (majorSchedule.Any(m => m.Date == request.startDate.AddDays((i+numberOfWeeksSkipped) * 7)))
+                    if (majorSchedule.Any(m => m.Date == request.startDate.AddDays((i + numberOfWeeksSkipped) * 7)))
                     {
                         match.Date = request.startDate.AddDays((i + 1) * 7);
                         match.Week = i + 1;

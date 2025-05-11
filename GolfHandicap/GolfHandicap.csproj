@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Flights\" />
     <Folder Include="Features\Matches\Post\GolfMatches\Get\" />
   </ItemGroup>
 

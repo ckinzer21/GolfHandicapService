@@ -17,7 +17,7 @@ namespace GolfHandicap.Features.Golfers.Get.GetById
 
         public async Task<GetGolferResponse?> GetGolferById(int golferId)
         {
-            var golfer = await _context.Golfers.FirstOrDefaultAsync(g => g.GolferId == golferId);
+            var golfer = await _context.Golfer.FirstOrDefaultAsync(g => g.GolferId == golferId);
             if (golfer == null) throw new Exception("No Golfer Found");
             HandicapIndexResult handicapIndexAndRounded = await _getHandicap.GetIndexAndRounded(golfer.GolferId);
             return new GetGolferResponse(golfer.GolferId, golfer.Name, golfer.Email, handicapIndexAndRounded.HandicapIndex, handicapIndexAndRounded.RoundedHandicap);
@@ -25,7 +25,7 @@ namespace GolfHandicap.Features.Golfers.Get.GetById
 
         public async Task<IEnumerable<GetGolferResponse?>> GetAllGolfers()
         {
-            var golfers = await _context.Golfers.ToListAsync();
+            var golfers = await _context.Golfer.ToListAsync();
             if (golfers.Count == 0) throw new Exception("No Golfers Found");
 
             List<GetGolferResponse> getGolferResponses = [];

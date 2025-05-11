@@ -5,14 +5,14 @@ namespace GolfHandicap.Data
 {
     public class DataContext : DbContext
     {
-        public DbSet<Golfer> Golfers { get; set; }
-        public DbSet<MatchSchedule> MatchSchedules { get; set; }
-        public DbSet<GolfMatch> GolfMatches { get; set; }
-        public DbSet<Score> Scores { get; set; }
+        public DbSet<Golfer> Golfer { get; set; }
+        public DbSet<MatchSchedule> MatchSchedule { get; set; }
+        public DbSet<GolfMatch> GolfMatch { get; set; }
+        public DbSet<Score> Score { get; set; }
         public DbSet<Weight> Weight { get; set; }
-        public DbSet<Course> Courses { get; set; }
-        public DbSet<Tee> Tees { get; set; }
-        public DbSet<Major> Majors { get; set; }
+        public DbSet<Course> Course { get; set; }
+        public DbSet<Tee> Tee { get; set; }
+        public DbSet<Major> Major { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

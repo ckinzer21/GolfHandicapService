@@ -20,6 +20,7 @@ namespace GolfHandicap.Features.Controllers
         [HttpGet("GetScoreByScoreId")]
         public async Task<IActionResult> GetScoreByScoreId(int scoreId)
         {
+            if (scoreId <= 0) return BadRequest("scoreId is required to get the score");
             var score = await _getScoreHandler.GetScoreByScoreId(scoreId);
             return score != null ? Ok(score) : NotFound();
         }
@@ -27,6 +28,7 @@ namespace GolfHandicap.Features.Controllers
         [HttpGet("GetScoreByGolferId")]
         public async Task<IActionResult> GetScoreByGolferId(int golferId)
         {
+            if (golferId <= 0) return BadRequest("golferId is required to get the scores");
             var scores = await _getScoreHandler.GetScoresByGolferId(golferId);
             return scores != null ? Ok(scores) : NotFound();
         }
@@ -34,6 +36,8 @@ namespace GolfHandicap.Features.Controllers
         [HttpPost("CreateScore")]
         public async Task<IActionResult> CreateScore([FromBody] PostScoreRequest request)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             var handicap = await _postScoreHandler.CreateScore(request);
 
             if (!string.IsNullOrEmpty(handicap.Error)) return NotFound(handicap.Error);
@@ -44,6 +48,8 @@ namespace GolfHandicap.Features.Controllers
         [HttpPost("UpdateScore")]
         public async Task<IActionResult> UpdateScore([FromBody] PostScoreRequest request)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             var handicap = await _postScoreHandler.UpdateScore(request);
 
             if (!string.IsNullOrEmpty(handicap.Error)) return NotFound(handicap.Error);

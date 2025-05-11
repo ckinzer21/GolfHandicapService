@@ -28,7 +28,7 @@ namespace GolfHandicap.Features.Scores.Post
 
         public async Task<HandicapIndexResult> UpdateScore(PostScoreRequest request)
         {
-            var score = await _context.Scores.FirstOrDefaultAsync(s => s.ScoreId == request.ScoreId);
+            var score = await _context.Score.FirstOrDefaultAsync(s => s.ScoreId == request.ScoreId);
 
             if (score == null) throw new Exception("Score not found"); //need to fix
 
