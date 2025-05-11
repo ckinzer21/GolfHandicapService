@@ -17,31 +17,48 @@ namespace GolfHandicap.Features.Controllers
             _postScoreHandler = postScoreHandler;
         }
 
-        [HttpGet(Name = "GetScoreByScoreId")]
+        [HttpGet("GetScoreByScoreId")]
         public async Task<IActionResult> GetScoreByScoreId(int scoreId)
         {
             var score = await _getScoreHandler.GetScoreByScoreId(scoreId);
             return score != null ? Ok(score) : NotFound();
         }
 
-        [HttpGet(Name = "GetScoreByGolferId")]
+        [HttpGet("GetScoreByGolferId")]
         public async Task<IActionResult> GetScoreByGolferId(int golferId)
         {
             var scores = await _getScoreHandler.GetScoresByGolferId(golferId);
             return scores != null ? Ok(scores) : NotFound();
         }
 
-        [HttpPost(Name = "CreateScore")]
+        [HttpPost("CreateScore")]
         public async Task<IActionResult> CreateScore([FromBody] PostScoreRequest request)
         {
             var handicap = await _postScoreHandler.CreateScore(request);
+
+            if (!string.IsNullOrEmpty(handicap.Error)) return NotFound(handicap.Error);
+
             return Ok(handicap);
         }
 
-        [HttpPost(Name = "UpdateScore")]
+        [HttpPost("UpdateScore")]
         public async Task<IActionResult> UpdateScore([FromBody] PostScoreRequest request)
         {
             var handicap = await _postScoreHandler.UpdateScore(request);
+
+            if (!string.IsNullOrEmpty(handicap.Error)) return NotFound(handicap.Error);
+
+            return Ok(handicap);
+        }
+
+        [HttpGet("Handicap")]
+        public async Task<IActionResult> GetHandicapIndex(int golferId)
+        {
+            if (golferId <= 0) return BadRequest("golferId is required to get the handicap");
+            var handicap = await _getScoreHandler.GetHandicapIndex(golferId);
+
+            if (!string.IsNullOrEmpty(handicap.Error)) return BadRequest(handicap.Error);
+
             return Ok(handicap);
         }
     }

@@ -18,24 +18,25 @@ namespace GolfHandicap.Common
             _context = context;
         }
 
-        public async Task<(double?, int?)> GetIndexAndRounded(int golferId)
+        public async Task<HandicapIndexResult> GetIndexAndRounded(int golferId)
         {
             var lastSixScores = await GetLastSixScores(golferId);
-            if (lastSixScores.Count == 0) return (null, null);
+            if (lastSixScores.Count == 0) return new HandicapIndexResult { Error = "No scores available." };
             var weight = await _context.Weight.FirstOrDefaultAsync();
             if (weight != null)
             {
                 var handicapIndex = _handicapCalculation.CalculateHandicapIndex(lastSixScores, weight);
                 var roundedHandicapIndex = _customRounding.RoundHalfUpElseFloor(handicapIndex);
-                return (handicapIndex, roundedHandicapIndex);
+                return new HandicapIndexResult { HandicapIndex = handicapIndex, RoundedHandicap = roundedHandicapIndex };
             }
-            else return (null, null);
+            else return new HandicapIndexResult { Error = "No weight record found."};
         }
 
         private async Task<List<Score>> GetLastSixScores(int golferId) =>
             await _context.Scores
                 .Where(s => s.GolferId == golferId && s.MatchSchedule != null)
                 .Include(s => s.MatchSchedule) // ensures matchschedule is loaded
+                .Include(s => s.Tee)
                 .OrderByDescending(s => s.MatchSchedule.Date.Year)
                 .ThenByDescending(s => s.MatchSchedule.Week)
                 .Take(6)

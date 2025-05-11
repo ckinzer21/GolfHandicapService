@@ -1,17 +1,16 @@
 using GolfHandicap.Common;
 using GolfHandicap.Data;
-using GolfHandicap.Features.Courses;
-using GolfHandicap.Features.Flights;
 using GolfHandicap.Features.Golfers.Get;
 using GolfHandicap.Features.Golfers.Get.GetById;
 using GolfHandicap.Features.Golfers.Post;
-using GolfHandicap.Features.Majors;
 using GolfHandicap.Features.Matches.Post.GolfMatches;
 using GolfHandicap.Features.Matches.Post.GolfMatches.Scheduler;
 using GolfHandicap.Features.Matches.Post.Schedule;
 using GolfHandicap.Features.Scores.Get;
 using GolfHandicap.Features.Scores.Handicaps.Calculation;
 using GolfHandicap.Features.Scores.Post;
+using GolfHandicap.Features.Setup;
+using GolfHandicap.Infrastructure;
 
 namespace GolfHandicap
 {
@@ -38,16 +37,15 @@ namespace GolfHandicap
             builder.Services.AddTransient<ICustomRounding, CustomRounding>();
             builder.Services.AddTransient<IGetHandicap, GetHandicap>();
             builder.Services.AddTransient<IHandicapCalculation, HandicapCalculation>();
-            builder.Services.AddTransient<ICreateCourseHandler, CreateCourseHandler>();
             builder.Services.AddTransient<IGenerateMatchSchedule, GenerateMatchSchedule>();
-            builder.Services.AddTransient<IPostFlight, PostFlight>();
-            builder.Services.AddTransient<IPostMajor, PostMajor>();
+            builder.Services.AddTransient<IPostSetupHandler, PostSetupHandler>();
             builder.Services.Configure<SlopeSettings>(builder.Configuration.GetSection("SlopeSettings"));
             builder.Services.AddAutoMapper(typeof(Program));
             //builder.Logging.ClearProviders();
 
 
             var app = builder.Build();
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

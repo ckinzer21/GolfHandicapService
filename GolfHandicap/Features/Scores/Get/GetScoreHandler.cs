@@ -1,4 +1,5 @@
-﻿using GolfHandicap.Data;
+﻿using GolfHandicap.Common;
+using GolfHandicap.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace GolfHandicap.Features.Scores.Get
@@ -6,10 +7,12 @@ namespace GolfHandicap.Features.Scores.Get
     public class GetScoreHandler : IGetScoreHandler
     {
         private readonly DataContext _context;
+        private readonly IGetHandicap _getHandicap;
 
-        public GetScoreHandler(DataContext context)
+        public GetScoreHandler(DataContext context, IGetHandicap getHandicap)
         {
             _context = context;
+            _getHandicap = getHandicap;
         }
 
         public async Task<GetScoreResponse?> GetScoreByScoreId(int id)
@@ -23,6 +26,11 @@ namespace GolfHandicap.Features.Scores.Get
         public async Task<IEnumerable<GetScoreResponse?>> GetScoresByGolferId(int golferId)
         {
             return await _context.Scores.Select(x => new GetScoreResponse(x.ScoreId, x.GrossStrokes, x.AdjustedGrossStrokes, x.MatchScheduleId, x.GolferId, x.TeeId)).ToListAsync();
+        }
+
+        public async Task<HandicapIndexResult> GetHandicapIndex(int golferId)
+        {
+            return await _getHandicap.GetIndexAndRounded(golferId);
         }
     }
 }

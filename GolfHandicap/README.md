@@ -109,6 +109,7 @@ Adjusted Gross Score will be double par (USGA uses double bogey)
 
 This is how the handicap index will be calc
 From the past 6 scores
+
 Handicap Differential = ((Adjusted Gross Score - Course Rating) * 113) / Slope Rating
 Then average it, then * 80%
 

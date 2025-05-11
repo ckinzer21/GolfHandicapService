@@ -1,4 +1,4 @@
-﻿namespace GolfHandicap.Features.Courses
+﻿namespace GolfHandicap.Features.Setup.Courses
 {
     public record CreateCourseRequest
     {

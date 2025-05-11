@@ -1,4 +1,4 @@
-﻿namespace GolfHandicap.Features.Flights
+﻿namespace GolfHandicap.Features.Setup.Flights
 {
     public record PostFlightRequest(int flightId, string name);
 }

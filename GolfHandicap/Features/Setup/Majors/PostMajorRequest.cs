@@ -1,4 +1,4 @@
-﻿namespace GolfHandicap.Features.Majors
+﻿namespace GolfHandicap.Features.Setup.Majors
 {
     public record PostMajorRequest(int majorId, string name);
 }

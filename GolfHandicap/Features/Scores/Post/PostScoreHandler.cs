@@ -16,9 +16,9 @@ namespace GolfHandicap.Features.Scores.Post
             _getHandicap = getHandicap;
         }
 
-        public async Task<(double?, int?)> CreateScore(PostScoreRequest request)
+        public async Task<HandicapIndexResult> CreateScore(PostScoreRequest request)
         {
-            var score = new Score { GrossStrokes = request.Strokes, AdjustedGrossStrokes = request.AdjustedStrokes, GolferId = request.GolferId, MatchScheduleId = request.MatchScheduleId };
+            var score = new Score { GrossStrokes = request.Strokes, AdjustedGrossStrokes = request.AdjustedStrokes, GolferId = request.GolferId, MatchScheduleId = request.MatchScheduleId, TeeId = request.TeeId };
 
             _context.Add(score);
             await _context.SaveChangesAsync();
@@ -26,7 +26,7 @@ namespace GolfHandicap.Features.Scores.Post
             return await _getHandicap.GetIndexAndRounded(request.GolferId);
         }
 
-        public async Task<(double?, int?)> UpdateScore(PostScoreRequest request)
+        public async Task<HandicapIndexResult> UpdateScore(PostScoreRequest request)
         {
             var score = await _context.Scores.FirstOrDefaultAsync(s => s.ScoreId == request.ScoreId);
 
