@@ -28,7 +28,7 @@ namespace GolfHandicap
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<DataContext>();
-            //builder.Logging.AddConsole();
+            builder.Services.AddAutoMapper(typeof(Program));
             builder.Services.AddTransient<IPostGolferHandler, PostGolferHandler>();
             builder.Services.AddTransient<IGetGolferHandler, GetGolferHandler>();
             builder.Services.AddTransient<IPostMatchScheduleHandler, PostMatchScheduleHandler>();

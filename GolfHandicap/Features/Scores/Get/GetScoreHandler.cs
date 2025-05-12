@@ -1,4 +1,6 @@
-﻿using GolfHandicap.Common;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using GolfHandicap.Common;
 using GolfHandicap.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,24 +10,30 @@ namespace GolfHandicap.Features.Scores.Get
     {
         private readonly DataContext _context;
         private readonly IGetHandicap _getHandicap;
+        private readonly IMapper _mapper;
 
-        public GetScoreHandler(DataContext context, IGetHandicap getHandicap)
+        public GetScoreHandler(DataContext context, IGetHandicap getHandicap, IMapper mapper)
         {
             _context = context;
             _getHandicap = getHandicap;
+            _mapper = mapper;
         }
 
         public async Task<GetScoreResponse?> GetScoreByScoreId(int id)
         {
             return await _context.Score
+                .AsNoTracking()
+                .ProjectTo<GetScoreResponse>(_mapper.ConfigurationProvider)
                 .Where(x => x.ScoreId == id)
-                .Select(x => new GetScoreResponse(x.ScoreId, x.GrossStrokes, x.AdjustedGrossStrokes, x.MatchScheduleId, x.GolferId, x.TeeId))
                 .FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<GetScoreResponse?>> GetScoresByGolferId(int golferId)
         {
-            return await _context.Score.Select(x => new GetScoreResponse(x.ScoreId, x.GrossStrokes, x.AdjustedGrossStrokes, x.MatchScheduleId, x.GolferId, x.TeeId)).ToListAsync();
+            return await _context.Score
+                .AsNoTracking()
+                .ProjectTo<GetScoreResponse>(_mapper.ConfigurationProvider)
+                .ToListAsync();
         }
 
         public async Task<HandicapIndexResult> GetHandicapIndex(int golferId)

@@ -26,11 +26,19 @@ namespace GolfHandicap.Features.Controller
             return Ok();
         }
 
-        [HttpGet("getgolfmatches")]
-        public async Task<IActionResult> GetGolfMatches(int year)
+        [HttpGet("getgolfmatchesbyyear")]
+        public async Task<IActionResult> GetGolfMatchesByYear(int year)
         {
             if (year <= 0) return BadRequest("year must be supplied");
-            var result = await _getHandler.GetGolfMatch(year);
+            var result = await _getHandler.GetGolfMatchByYear(year);
+            return Ok(result);
+        }
+
+        [HttpGet("getgolfmatchesbyyearandweek")]
+        public async Task<IActionResult> GetGolfMatchesByYearAndWeek(GetGolfMatchRequest request)
+        {
+            if (request.Year <= 0 || request.Week <= 0) return BadRequest("year and week must be supplied");
+            var result =  await _getHandler.GetGolfMatchByYearAndWeek(request.Year, request.Week);
             return Ok(result);
         }
     }

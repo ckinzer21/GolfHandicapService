@@ -18,7 +18,7 @@ namespace GolfHandicap.Common
             _context = context;
         }
 
-        public async Task<HandicapIndexResult> GetIndexAndRounded(int golferId)
+        public async Task<HandicapIndexResult> GetIndexAndRounded(int? golferId)
         {
             var lastSixScores = await GetLastSixScores(golferId);
             if (lastSixScores.Count == 0) return new HandicapIndexResult { Error = "No scores available." };
@@ -32,7 +32,7 @@ namespace GolfHandicap.Common
             else return new HandicapIndexResult { Error = "No weight record found."};
         }
 
-        private async Task<List<Score>> GetLastSixScores(int golferId) =>
+        private async Task<List<Score>> GetLastSixScores(int? golferId) =>
             await _context.Score
                 .Where(s => s.GolferId == golferId && s.MatchSchedule != null)
                 .Include(s => s.MatchSchedule) // ensures matchschedule is loaded

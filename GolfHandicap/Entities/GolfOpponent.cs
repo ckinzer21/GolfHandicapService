@@ -1,4 +1,7 @@
-﻿namespace GolfHandicap.Entities
+﻿using GolfHandicap.Common.Mappings;
+using GolfHandicap.Features.Matches.Get;
+
+namespace GolfHandicap.Entities
 {
     public class GolfOpponent
     {
