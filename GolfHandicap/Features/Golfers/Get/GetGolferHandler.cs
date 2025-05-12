@@ -29,7 +29,7 @@ namespace GolfHandicap.Features.Golfers.Get.GetById
                 .ProjectTo<GetGolferResponse>(_mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync(g => g.GolferId == golferId);
 
-            if (golfer == null) throw new Exception("No Golfer Found");
+            if (golfer == null) return null;
 
             HandicapIndexResult handicap = await _getHandicap.GetIndexAndRounded(golfer.GolferId);
             golfer.HandicapIndex = handicap.HandicapIndex;
