@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using GolfHandicap.Common;
+using GolfHandicap.Common.Handicaps;
 using GolfHandicap.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,13 +11,15 @@ namespace GolfHandicap.Features.Golfers.Get.GetById
     {
         private readonly DataContext _context;
         private readonly IGetHandicap _getHandicap;
+        private readonly IGetAllGolfersWithHandicap _getAllGolfers;
         private readonly IMapper _mapper;
 
-        public GetGolferHandler(DataContext context, IGetHandicap getHandicap, IMapper mapper)
+        public GetGolferHandler(DataContext context, IGetHandicap getHandicap, IGetAllGolfersWithHandicap getAllGolfers, IMapper mapper)
         {
             _context = context;
             _getHandicap = getHandicap;
             _mapper = mapper;
+            _getAllGolfers = getAllGolfers;
         }
 
         public async Task<GetGolferResponse?> GetGolferById(int golferId)
@@ -37,21 +40,7 @@ namespace GolfHandicap.Features.Golfers.Get.GetById
 
         public async Task<IEnumerable<GetGolferResponse?>> GetAllGolfers()
         {
-            var golfers = await _context.Golfer
-                .AsNoTracking()
-                .ProjectTo<GetGolferResponse>(_mapper.ConfigurationProvider)
-                .ToListAsync();
-
-            if (golfers.Count == 0) throw new Exception("No Golfers Found");
-
-            var tasks = golfers.Select(async golfer =>
-            {
-                var handicap = await _getHandicap.GetIndexAndRounded(golfer.GolferId);
-                golfer.HandicapIndex = handicap.HandicapIndex;
-                golfer.RoundedHandicap = handicap.RoundedHandicap;
-            });
-
-            await Task.WhenAll(tasks);//When all for async.  Wait all when called from a synchronous method
+            var golfers = await _getAllGolfers.Get();
 
             return golfers;
         }

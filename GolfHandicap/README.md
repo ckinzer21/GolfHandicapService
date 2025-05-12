@@ -106,6 +106,7 @@ This is not the same as USGA rules
 I will be tracking the past 6 rounds at 80%
 At the beginning of the year, the past 10 of 20 rounds at 80% will be used to determine a golfer's handicap
 Adjusted Gross Score will be double par (USGA uses double bogey)
+(USGA currently does best 8 of 20 rounds and averages those * 96%)
 
 This is how the handicap index will be calc
 From the past 6 scores

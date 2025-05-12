@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using GolfHandicap.Common;
+using GolfHandicap.Common.Handicaps;
 using GolfHandicap.Data;
 using Microsoft.EntityFrameworkCore;
 

@@ -30,7 +30,7 @@ namespace GolfHandicap.Features.Controllers
         public async Task<IActionResult> GetAllGolfers()
         {
             var golfers = await _getGolferHandler.GetAllGolfers();
-            return golfers != null ? Ok(golfers) : NotFound();
+            return golfers != null ? Ok(golfers) : NotFound("No golfers found");
         }
 
         [HttpPost("CreateGolfer")]

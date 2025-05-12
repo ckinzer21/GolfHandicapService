@@ -12,7 +12,7 @@ namespace GolfHandicap.Features.Matches.Post.GolfMatches.Scheduler
             var filteredMatches = matchSchedules.Where(m => m.MajorId == null);
 
             var groupedByWeek = filteredMatches
-                .GroupBy(ms => new { ms.Week, ms.Date.Year })
+                .GroupBy(ms => new { ms.Week, ms.MatchDate.Year })
                 .OrderBy(g => g.Key.Year)
                 .ThenBy(g => g.Key.Week);
 

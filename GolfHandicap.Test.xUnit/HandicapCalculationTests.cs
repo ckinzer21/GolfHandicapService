@@ -1,6 +1,6 @@
 using GolfHandicap.Common;
 using GolfHandicap.Entities;
-using GolfHandicap.Features.Scores.Handicaps.Calculation;
+using GolfHandicap.Common.Handicaps;
 using Microsoft.Extensions.Options;
 
 namespace GolfHandicap.Test.xUnit

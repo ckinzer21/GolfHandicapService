@@ -21,7 +21,7 @@ namespace GolfHandicap.Test.xUnit
 
             foreach (var date in expectedDates)
             {
-                Assert.True(actual.ToList().Any(d => d.Date == date));
+                Assert.True(actual.ToList().Any(d => d.MatchDate == date));
             }
         }
 
@@ -40,7 +40,7 @@ namespace GolfHandicap.Test.xUnit
 
             foreach (var date in expectedDates)
             {
-                Assert.True(actual.ToList().Any(d => d.Date == date));
+                Assert.True(actual.ToList().Any(d => d.MatchDate == date));
             }
         }
 
@@ -59,7 +59,7 @@ namespace GolfHandicap.Test.xUnit
 
             foreach(var date in expectedDates)
             {
-                Assert.True(actual.ToList().Any(d => d.Date == date));
+                Assert.True(actual.ToList().Any(d => d.MatchDate == date));
             }
         }
 

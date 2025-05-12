@@ -1,4 +1,5 @@
 using GolfHandicap.Common;
+using GolfHandicap.Common.Handicaps;
 using GolfHandicap.Data;
 using GolfHandicap.Features.Golfers.Get;
 using GolfHandicap.Features.Golfers.Get.GetById;
@@ -8,7 +9,6 @@ using GolfHandicap.Features.Matches.Post.GolfMatches;
 using GolfHandicap.Features.Matches.Post.GolfMatches.Scheduler;
 using GolfHandicap.Features.Matches.Post.Schedule;
 using GolfHandicap.Features.Scores.Get;
-using GolfHandicap.Features.Scores.Handicaps.Calculation;
 using GolfHandicap.Features.Scores.HoleScores;
 using GolfHandicap.Features.Scores.Post;
 using GolfHandicap.Features.Setup;

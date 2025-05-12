@@ -14,6 +14,7 @@ namespace GolfHandicap.Data
         public DbSet<Tee> Tee { get; set; }
         public DbSet<Major> Major { get; set; }
         public DbSet<GolfOpponent> GolfOpponent { get; set; }
+        public DbSet<Flight> Flight { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

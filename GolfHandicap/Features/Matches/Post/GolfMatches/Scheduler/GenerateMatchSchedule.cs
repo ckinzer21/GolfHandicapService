@@ -26,7 +26,7 @@ namespace GolfHandicap.Features.Matches.Post.GolfMatches.Scheduler
             var majorSchedule = new List<MatchSchedule>();
             foreach (var major in request.majors)
             {
-                majorSchedule.Add(new MatchSchedule { Date = major.Date, MajorId = major.MajorId });
+                majorSchedule.Add(new MatchSchedule { MatchDate = major.Date, MajorId = major.MajorId });
             }
 
             var regularSchedule = new List<MatchSchedule>();
@@ -42,9 +42,9 @@ namespace GolfHandicap.Features.Matches.Post.GolfMatches.Scheduler
                 for (var j = 0; j < matchesPerWeek; j++)
                 {
                     var match = new MatchSchedule();
-                    if (majorSchedule.Any(m => m.Date == request.startDate.AddDays((i + numberOfWeeksSkipped) * 7)))
+                    if (majorSchedule.Any(m => m.MatchDate == request.startDate.AddDays((i + numberOfWeeksSkipped) * 7)))
                     {
-                        match.Date = request.startDate.AddDays((i + 1) * 7);
+                        match.MatchDate = request.startDate.AddDays((i + 1) * 7);
                         match.Week = i + 1;
                         if (!isSkippingAWeek)
                         {
@@ -54,7 +54,7 @@ namespace GolfHandicap.Features.Matches.Post.GolfMatches.Scheduler
                     }
                     else
                     {
-                        match.Date = request.startDate.AddDays((i + numberOfWeeksSkipped) * 7);
+                        match.MatchDate = request.startDate.AddDays((i + numberOfWeeksSkipped) * 7);
                         match.Week = i + 1;
                     }
 

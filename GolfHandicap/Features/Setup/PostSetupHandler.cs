@@ -29,7 +29,7 @@ namespace GolfHandicap.Features.Setup
 
             foreach (var request in requests)
             {
-                var flight = new Flight { FlightId = request.flightId, Name = request.name };
+                var flight = new Flight { FlightId = request.flightId, Name = request.name, Rank = request.rank };
                 _context.Add(flight);
             }
             await _context.SaveChangesAsync();

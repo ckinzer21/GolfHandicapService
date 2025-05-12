@@ -45,7 +45,7 @@ namespace GolfHandicap.Test.xUnit
             }
         }
 
-        public class GolfMatchComparer : IEqualityComparer<GolfMatch>
+        private class GolfMatchComparer : IEqualityComparer<GolfMatch>
         {
             public bool Equals(GolfMatch? x, GolfMatch? y) =>
                 x?.GolferId == y?.GolferId && x?.MatchScheduleId == y?.MatchScheduleId;
@@ -149,21 +149,21 @@ namespace GolfHandicap.Test.xUnit
         {
             var matches = new[]
             {
-                new MatchSchedule { MatchScheduleId = 1, Week = 1, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 2, Week = 1, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 3, Week = 1, Date = DateTime.Today, Blind = true},
-                new MatchSchedule { MatchScheduleId = 4, Week = 2, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 5, Week = 2, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 6, Week = 2, Date = DateTime.Today, Blind = true},
-                new MatchSchedule { MatchScheduleId = 7, Week = 3, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 8, Week = 3, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 9, Week = 3, Date = DateTime.Today, Blind = true},
-                new MatchSchedule { MatchScheduleId = 10, Week = 4, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 11, Week = 4, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 12, Week = 4, Date = DateTime.Today, Blind = true},
-                new MatchSchedule { MatchScheduleId = 13, Week = 5, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 14, Week = 5, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 15, Week = 5, Date = DateTime.Today, Blind = true},
+                new MatchSchedule { MatchScheduleId = 1, Week = 1, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 2, Week = 1, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 3, Week = 1, MatchDate = DateTime.Today, Blind = true},
+                new MatchSchedule { MatchScheduleId = 4, Week = 2, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 5, Week = 2, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 6, Week = 2, MatchDate = DateTime.Today, Blind = true},
+                new MatchSchedule { MatchScheduleId = 7, Week = 3, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 8, Week = 3, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 9, Week = 3, MatchDate = DateTime.Today, Blind = true},
+                new MatchSchedule { MatchScheduleId = 10, Week = 4, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 11, Week = 4, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 12, Week = 4, MatchDate = DateTime.Today, Blind = true},
+                new MatchSchedule { MatchScheduleId = 13, Week = 5, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 14, Week = 5, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 15, Week = 5, MatchDate = DateTime.Today, Blind = true},
                 new MatchSchedule { MatchScheduleId = 92, MajorId = 1},
                 new MatchSchedule { MatchScheduleId = 93, MajorId = 2},
                 new MatchSchedule { MatchScheduleId = 94, MajorId = 3},
@@ -180,21 +180,21 @@ namespace GolfHandicap.Test.xUnit
             //Left gaps in ids to be sure it still works
             var matches = new[]
             {
-                new MatchSchedule { MatchScheduleId = 1, Week = 1, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 2,Week = 1, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 3,Week = 1, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 5,Week = 2, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 6,Week = 2, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 7,Week = 2, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 9,Week = 3, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 10,Week = 3, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 11,Week = 3, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 13,Week = 4, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 14,Week = 4, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 15,Week = 4, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 17,Week = 5, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 18,Week = 5, Date = DateTime.Today},
-                new MatchSchedule { MatchScheduleId = 19,Week = 5, Date = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 1, Week = 1, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 2,Week = 1, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 3,Week = 1, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 5,Week = 2, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 6,Week = 2, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 7,Week = 2, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 9,Week = 3, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 10,Week = 3, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 11,Week = 3, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 13,Week = 4, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 14,Week = 4, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 15,Week = 4, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 17,Week = 5, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 18,Week = 5, MatchDate = DateTime.Today},
+                new MatchSchedule { MatchScheduleId = 19,Week = 5, MatchDate = DateTime.Today},
                 new MatchSchedule { MatchScheduleId = 92, MajorId = 1},
                 new MatchSchedule { MatchScheduleId = 93, MajorId = 2},
                 new MatchSchedule { MatchScheduleId = 94, MajorId = 3},
