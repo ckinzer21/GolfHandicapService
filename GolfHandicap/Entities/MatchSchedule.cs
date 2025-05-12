@@ -8,6 +8,7 @@
         public int? MajorId { get; set; }
         public Major? Major { get; set; }
         public bool Blind { get; set; } = false;
+        public bool IsDeleted { get; set; }
         public ICollection<GolfMatch>? GolfMatches { get; set; }
 
     }

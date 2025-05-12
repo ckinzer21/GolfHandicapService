@@ -8,6 +8,9 @@
         public int MatchScheduleId { get; set; }
         public int GolferId { get; set; }
         public int TeeId { get; set; }
+        public int Points { get; set; }
+        public int Handicap { get; set; }
+        public bool IsDeleted { get; set; }
         public MatchSchedule? MatchSchedule { get; set; }
         public Golfer? Golfer { get; set; }
         public ICollection<HoleScore>? HolesScore { get; set; }

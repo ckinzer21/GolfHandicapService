@@ -1,4 +1,5 @@
 ﻿using GolfHandicap.Features.Scores.Get;
+using GolfHandicap.Features.Scores.HoleScores;
 using GolfHandicap.Features.Scores.Post;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,11 +11,13 @@ namespace GolfHandicap.Features.Controllers
     {
         private IGetScoreHandler _getScoreHandler { get; set; }
         private IPostScoreHandler _postScoreHandler { get; set; }
+        private IPostHoleScoreHandler _postHoleScoreHandler { get; set; }
 
-        public ScoreController(IGetScoreHandler getScoreHandler, IPostScoreHandler postScoreHandler)
+        public ScoreController(IGetScoreHandler getScoreHandler, IPostScoreHandler postScoreHandler, IPostHoleScoreHandler postHoleScoreHandler)
         {
             _getScoreHandler = getScoreHandler;
             _postScoreHandler = postScoreHandler;
+            _postHoleScoreHandler = postHoleScoreHandler;
         }
 
         [HttpGet("GetScoreByScoreId")]
@@ -55,6 +58,18 @@ namespace GolfHandicap.Features.Controllers
             if (!string.IsNullOrEmpty(handicap.Error)) return NotFound(handicap.Error);
 
             return Ok(handicap);
+        }
+
+        [HttpPost("CreateHolesScore")]
+        public async Task<IActionResult> CreateHolesScore([FromBody]IEnumerable<PostHoleScoreRequest> requests)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var result = await _postHoleScoreHandler.CreateHolesScore(requests);
+
+            if (!result.Success) return BadRequest(result.ErrorMessage);
+
+            return Ok();
         }
     }
 }

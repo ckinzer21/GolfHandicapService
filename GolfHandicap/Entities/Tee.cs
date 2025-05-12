@@ -7,6 +7,7 @@
         public double CourseRating { get; set; }
         public double Slope { get; set; }
         public int CourseId { get; set; }
+        public bool IsDeleted { get; set; }
         public Course? Course { get; set; }
     }
 }

@@ -22,6 +22,12 @@ namespace GolfHandicap.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Golfer>().HasQueryFilter(x => !x.IsDeleted);
             modelBuilder.Entity<Weight>().HasQueryFilter(x => !x.IsDeleted);
+            modelBuilder.Entity<HoleScore>().HasQueryFilter(x => !x.IsDeleted);
+            modelBuilder.Entity<Major>().HasQueryFilter(x => !x.IsDeleted);
+            modelBuilder.Entity<MatchSchedule>().HasQueryFilter(x => !x.IsDeleted);
+            modelBuilder.Entity<Score>().HasQueryFilter(x => !x.IsDeleted);
+            modelBuilder.Entity<Tee>().HasQueryFilter(x => !x.IsDeleted);
+
             modelBuilder.Entity<GolfMatch>()
                 .HasKey(gm => new {gm.GolferId, gm.MatchScheduleId});
 
@@ -47,9 +53,15 @@ namespace GolfHandicap.Data
             modelBuilder.Entity<Golfer>()
                 .HasOne(g => g.Flight);
 
-            modelBuilder.Entity<Score>()
-                .HasMany(s => s.HolesScore)
-                .WithOne(h => h.Score);
+            modelBuilder.Entity<HoleScore>()
+                .HasOne(hs => hs.Score)
+                .WithMany(s => s.HolesScore)
+                .HasForeignKey(hs => hs.ScoreId)
+                .IsRequired();
+
+            //modelBuilder.Entity<Score>()
+            //    .HasMany(s => s.HolesScore)
+            //    .WithOne(h => h.Score);
 
             modelBuilder.Entity<Score>()
                 .HasOne(s => s.Tee)
@@ -70,7 +82,7 @@ namespace GolfHandicap.Data
                 .IsRequired()
                 .HasMaxLength(50);
 
-            modelBuilder.Entity<GolfOpponent>().HasNoKey();
+            modelBuilder.Entity<GolfOpponent>().HasNoKey();// no Primary key
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

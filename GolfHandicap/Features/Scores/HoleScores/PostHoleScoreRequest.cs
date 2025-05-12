@@ -1,14 +1,13 @@
-﻿namespace GolfHandicap.Entities
+﻿namespace GolfHandicap.Features.Scores.HoleScores
 {
-    public class HoleScore
+    public record PostHoleScoreRequest
     {
         public int HoleScoreId { get; set; }
         public int HoleNumber { get; set; }
         public int Par { get; set; }
         public int Strokes { get; set; }
         public int Handicap { get; set; }
-        public bool IsDeleted { get; set; }
         public int ScoreId { get; set; }
-        public Score? Score { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }
