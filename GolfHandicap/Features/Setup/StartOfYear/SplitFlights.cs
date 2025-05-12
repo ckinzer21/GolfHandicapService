@@ -1,7 +1,7 @@
 ﻿using GolfHandicap.Entities;
 using GolfHandicap.Features.Golfers.Get;
 
-namespace GolfHandicap.Features.StartOfYear
+namespace GolfHandicap.Features.Setup.StartOfYear
 {
     public interface ISplitFlights
     {

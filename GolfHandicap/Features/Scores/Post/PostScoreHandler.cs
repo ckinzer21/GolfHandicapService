@@ -39,7 +39,7 @@ namespace GolfHandicap.Features.Scores.Post
         {
             var score = await _context.Score.FirstOrDefaultAsync(s => s.ScoreId == request.ScoreId);
 
-            if (score == null) throw new Exception("Score not found"); //need to fix
+            if (score == null) return new HandicapIndexResult { Error = "No score found"};
 
             score.GrossStrokes = request.Strokes;
             score.AdjustedGrossStrokes = request.AdjustedStrokes;

@@ -4,14 +4,8 @@ using GolfHandicap.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace GolfHandicap.Features.StartOfYear
+namespace GolfHandicap.Features.Setup.StartOfYear
 {
-    public interface IStartOfYearHandler
-    {
-        Task<IEnumerable<GolferStartOfYearResponse>> SetupStartOfYearPreview();
-        Task<IEnumerable<GolferStartOfYearResponse>> SetupStartOfYear();
-    }
-
     public class StartOfYearHandler : IStartOfYearHandler
     {
         private readonly DataContext _context;
@@ -46,14 +40,5 @@ namespace GolfHandicap.Features.StartOfYear
 
             return await _splitsFlights.Run(golfers.ToList(), flights);
         }
-    }
-
-    public record GolferStartOfYearResponse
-    {
-        public int GolferId { get; set; }
-        public string? Name { get; set; }
-        public double? HandicapIndex { get; set; }
-        public string? Flight { get; set; }
-        public int FlightId { get; set; }
     }
 }

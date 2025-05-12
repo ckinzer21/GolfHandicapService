@@ -1,6 +1,6 @@
 ﻿using GolfHandicap.Entities;
 using GolfHandicap.Features.Golfers.Get;
-using GolfHandicap.Features.StartOfYear;
+using GolfHandicap.Features.Setup.StartOfYear;
 
 namespace GolfHandicap.Test.xUnit
 {
