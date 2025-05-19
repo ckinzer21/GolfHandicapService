@@ -43,6 +43,7 @@ namespace GolfHandicap
             builder.Services.AddTransient<IPostSetupHandler, PostSetupHandler>();
             builder.Services.AddTransient<IGetGolfMatchHandler,  GetGolfMatchHandler>();
             builder.Services.AddTransient<IPostHoleScoreHandler, PostHoleScoreHandler>();
+            builder.Services.AddTransient<IGetAllGolfersWithHandicap, GetAllGolfersWithHandicap>();
             builder.Services.Configure<SlopeSettings>(builder.Configuration.GetSection("SlopeSettings"));
             builder.Services.AddAutoMapper(typeof(Program));
             //builder.Logging.ClearProviders();
